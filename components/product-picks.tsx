@@ -68,9 +68,9 @@ export function ProductPicks({
 
       {products.length > 0 ? (
         <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {products.map((p) => (
+          {products.map((p, i) => (
             <li key={`${p.merchant}-${p.url}`}>
-              <ProductCard product={p} placement={placement} />
+              <ProductCard product={p} placement={placement} priority={i < 3} />
             </li>
           ))}
         </ul>

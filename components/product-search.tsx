@@ -153,9 +153,9 @@ export function ProductSearch({
 
           {total > 0 && (
             <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {data.products.map((p: ProductHit) => (
+              {data.products.map((p: ProductHit, i: number) => (
                 <li key={`${p.merchant}-${p.url}`}>
-                  <ProductCard product={p} placement={placement} />
+                  <ProductCard product={p} placement={placement} priority={i < 6} />
                 </li>
               ))}
             </ul>

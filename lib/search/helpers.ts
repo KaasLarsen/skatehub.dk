@@ -167,8 +167,50 @@ export function looksLikeXML(txt: string): boolean {
   return /<\?xml|<rss|<feed|<channel|<products|<product|<item|<produkter|<produkt/i.test(txt);
 }
 
-export function proxyImg(src: string): string {
-  return `/api/img?src=${encodeURIComponent(src)}`;
+export function proxyImg(src: string, width?: number): string {
+  const params = new URLSearchParams({ src });
+  if (width != null && width > 0) params.set("w", String(width));
+  return `/api/img?${params.toString()}`;
+}
+
+/** ~160px kort @2x — undgå at hente 1500px produktbilleder i søgeresultater. */
+export const PRODUCT_THUMB_WIDTH = 320;
+
+export function productThumbUrl(src: string, width = PRODUCT_THUMB_WIDTH): string {
+  const trimmed = (src || "").trim();
+  if (!trimmed) return trimmed;
+  try {
+    const u = new URL(trimmed.startsWith("//") ? `https:${trimmed}` : trimmed);
+    const host = u.hostname.toLowerCase();
+    const path = u.pathname;
+
+    if (host === "cdn.shopify.com" || host.endsWith(".myshopify.com")) {
+      u.searchParams.set("width", String(width));
+      return u.toString();
+    }
+
+    if (host.includes("cykelexperten") || u.searchParams.has("width")) {
+      u.searchParams.set("width", String(width));
+      return u.toString();
+    }
+
+    if (path.includes("/media/catalog/product/") && !path.includes("/cache/")) {
+      const rel = path.split("/media/catalog/product/")[1];
+      if (rel) {
+        u.pathname = `/media/catalog/product/cache/${width}x${width}/${rel}`;
+        return u.toString();
+      }
+    }
+
+    if (/fit-\d+x\d+x/i.test(path)) {
+      u.pathname = path.replace(/fit-\d+x\d+x(\d+)/i, `fit-${width}x${width}x$1`);
+      return u.toString();
+    }
+
+    return trimmed;
+  } catch {
+    return trimmed;
+  }
 }
 
 export function normalizeUrl(maybe: string, pageUrl: string): string | null {
@@ -232,20 +274,20 @@ function looksLikeHttpUrl(s: string): boolean {
 
 function pickProductImageFromBlock(block: string): string {
   const flatTags = [
-    "default_image",
-    "imageurl",
-    "image_url",
-    "largeimage",
-    "large_image",
-    "g_image_link",
-    "picture",
-    "picture_url",
-    "img",
-    "imgurl",
     "thumbnail",
     "thumb",
     "smallimage",
     "billedurl",
+    "imageurl",
+    "image_url",
+    "picture",
+    "picture_url",
+    "img",
+    "imgurl",
+    "default_image",
+    "largeimage",
+    "large_image",
+    "g_image_link",
     "location",
   ];
   for (const tag of flatTags) {
@@ -261,7 +303,7 @@ function pickProductImageFromBlock(block: string): string {
       if (!looksLikeHttpUrl(url)) continue;
       candidates.push({ size: pickTag(part, "size").toLowerCase(), url: url.trim() });
     }
-    for (const pref of ["large", "medium", "small", "default"]) {
+    for (const pref of ["small", "medium", "default", "large"]) {
       const hit = candidates.find((c) => c.size.includes(pref));
       if (hit) return hit.url;
     }
@@ -477,22 +519,22 @@ export function parseCSVProducts(text: string, merchant: string): FeedProduct[] 
   const it = pick(["name", "title", "productname", "product", "navn", "produktnavn"]);
   const iu = pick(["deeplink", "link", "producturl", "url", "vareurl"]);
   const ii = pick([
-    "default_image",
+    "thumbnail",
+    "thumb",
+    "smallimage",
+    "billedurl",
     "imageurl",
     "image_url",
     "image",
-    "largeimage",
-    "large_image",
     "picture",
     "picture_url",
     "img",
     "imgurl",
-    "thumbnail",
-    "thumb",
-    "smallimage",
+    "default_image",
+    "largeimage",
+    "large_image",
     "g:image_link",
     "image_link",
-    "billedurl",
   ]);
 
   const ip = pick([

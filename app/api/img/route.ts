@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { productThumbUrl } from "@/lib/search/helpers";
 
 const UA =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36";
@@ -11,6 +12,8 @@ export async function GET(req: NextRequest) {
   try {
     let src = req.nextUrl.searchParams.get("src")?.trim() || "";
     if (!src) return new NextResponse("missing src", { status: 400 });
+    const w = parseInt(req.nextUrl.searchParams.get("w") || "", 10);
+    if (Number.isFinite(w) && w > 0) src = productThumbUrl(src, w);
     if (src.startsWith("//")) src = "https:" + src;
     const url = new URL(src);
 

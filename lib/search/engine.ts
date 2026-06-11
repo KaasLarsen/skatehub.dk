@@ -1,6 +1,6 @@
 import { FEEDS } from "@/lib/feeds/config";
 import type { ProductHit, SearchResult } from "./types";
-import { expandQuery, normalizeUrl, parsePriceFilter, proxyImg, score } from "./helpers";
+import { expandQuery, normalizeUrl, parsePriceFilter, score } from "./helpers";
 import { getCachedFeedProducts } from "./fetch-feed";
 import { productEligibleForSkateSearch } from "./skate-filter";
 
@@ -44,13 +44,13 @@ export async function runSearch(qRaw: string, budgetMaxParam: number | null): Pr
           return [];
         }
 
-        const withProxy: ProductHit[] = matches.map((p) => {
+        const hits: ProductHit[] = matches.map((p) => {
           const img = normalizeUrl(p.image, p.url);
-          return img ? { ...p, image: proxyImg(img) } : { ...p, image: null };
+          return img ? { ...p, image: img } : { ...p, image: null };
         });
 
         feeds_ok++;
-        return withProxy;
+        return hits;
       } catch (err) {
         feeds_failed++;
         console.error(`[search] feed FAILED for ${feed.merchant}:`, err instanceof Error ? err.message : err);

@@ -1,17 +1,68 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import type { ProductHit } from "@/lib/search/types";
 import { trackAffiliateClick } from "@/lib/affiliate-track";
+import { PRODUCT_THUMB_WIDTH, productThumbUrl, proxyImg } from "@/lib/search/helpers";
 
 const IMAGE_FRAME =
   "mx-auto mt-3 flex size-36 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-[var(--bg-elevated)] sm:size-40";
 
+function ProductImage({
+  src,
+  title,
+  priority = false,
+}: {
+  src: string;
+  title: string;
+  priority?: boolean;
+}) {
+  const thumb = useMemo(() => productThumbUrl(src), [src]);
+  const [step, setStep] = useState(0);
+
+  const currentSrc = useMemo(() => {
+    switch (step) {
+      case 0:
+        return thumb;
+      case 1:
+        return src;
+      case 2:
+        return proxyImg(thumb, PRODUCT_THUMB_WIDTH);
+      case 3:
+        return proxyImg(src);
+      default:
+        return null;
+    }
+  }, [step, src, thumb]);
+
+  if (!currentSrc) {
+    return <div className="px-2 text-center text-xs text-[var(--text-dim)]">Intet billede</div>;
+  }
+
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={currentSrc}
+      alt={title}
+      className="max-h-full max-w-full object-contain p-2"
+      width={PRODUCT_THUMB_WIDTH}
+      height={PRODUCT_THUMB_WIDTH}
+      loading={priority ? "eager" : "lazy"}
+      decoding="async"
+      fetchPriority={priority ? "high" : "auto"}
+      onError={() => setStep((s) => (s < 3 ? s + 1 : 4))}
+    />
+  );
+}
+
 export function ProductCard({
   product,
   placement = "product-search",
+  priority = false,
 }: {
   product: ProductHit;
   placement?: string;
+  priority?: boolean;
 }) {
   const price =
     product.price != null
@@ -33,8 +84,7 @@ export function ProductCard({
         className={IMAGE_FRAME}
       >
         {product.image ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={product.image} alt="" className="max-h-full max-w-full object-contain p-2" loading="lazy" />
+          <ProductImage src={product.image} title={product.title} priority={priority} />
         ) : (
           <div className="px-2 text-center text-xs text-[var(--text-dim)]">Intet billede</div>
         )}
