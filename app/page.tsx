@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ContentCardGrid } from "@/components/content-card-grid";
 import { AffiliateDisclosure } from "@/components/affiliate-disclosure";
 import { OldschoolDeck } from "@/components/graffiti-backdrop";
-import { listGuidesByHub } from "@/lib/content/guides";
+import { listBangerGuides } from "@/lib/content/banger-guides";
 import { listSkateparks } from "@/lib/content/skateparks";
 import { editorialTeamName, siteName, siteUrl } from "@/lib/site";
 
@@ -15,6 +15,36 @@ export const metadata: Metadata = {
 };
 
 const heroLinks = [
+  {
+    href: "/guides/bedste-skateboard-hjul",
+    label: "Bedste hjul",
+    tag: "Køb",
+    blurb: "Størrelse, durometer og street vs. park.",
+  },
+  {
+    href: "/guides/bedste-bmx-cykel",
+    label: "Bedste BMX",
+    tag: "Køb",
+    blurb: "Complete guide til park og street — 2026.",
+  },
+  {
+    href: "/guides/stunt-scooter-vs-loebehjul",
+    label: "Stunt vs. løbehjul",
+    tag: "Parents",
+    blurb: "Forældre: køb det rigtige løbehjul til skatepark.",
+  },
+  {
+    href: "/guides/hvad-koster-det-at-starte-paa-skateboard",
+    label: "Hvad koster det?",
+    tag: "Budget",
+    blurb: "Komplet prisguide — board, hjelm og beskyttelse.",
+  },
+  {
+    href: "/guides/bedste-skateboard-til-boern",
+    label: "Board til børn",
+    tag: "Parents",
+    blurb: "Skateboard efter alder — 6, 8, 10 og 12 år.",
+  },
   {
     href: "/koebsguides",
     label: "Købsguides",
@@ -59,7 +89,7 @@ const marqueeWords = [
 const cultureCards = [
   {
     title: "Find dit setup",
-    body: "Complete boards, custom builds, BMX og trick-løbehjul — vi guider dig til det rigtige gear.",
+    body: "Complete boards, BMX, trick-løbehjul og reservedele — start med vores top-købsguides.",
     href: "/koebsguides",
     accent: "lime" as const,
   },
@@ -78,7 +108,7 @@ const cultureCards = [
 ];
 
 export default function HomePage() {
-  const koebsguides = listGuidesByHub("koebsguides").slice(0, 4);
+  const koebsguides = listBangerGuides();
   const skateparker = listSkateparks().slice(0, 4);
 
   return (
@@ -169,7 +199,21 @@ export default function HomePage() {
         <div className="flex items-end justify-between gap-4 border-b-2 border-[var(--border)] pb-4">
           <div>
             <h2 className="section-title">Fresh guides</h2>
-            <p className="mt-2 text-[var(--text-muted)]">Boards, BMX, løbehjul og beskyttelse.</p>
+            <p className="mt-2 text-[var(--text-muted)]">
+              Vores top-købsguides —{" "}
+              <Link href="/guides/bedste-skateboard-til-boern" className="link-lime">
+                board til børn
+              </Link>
+              ,{" "}
+              <Link href="/guides/bedste-bmx-cykel" className="link-lime">
+                BMX
+              </Link>{" "}
+              og{" "}
+              <Link href="/guides/bedste-skateboard-hjul" className="link-lime">
+                hjul
+              </Link>
+              .
+            </p>
           </div>
           <Link href="/koebsguides" className="section-link">
             Se alle →
@@ -186,7 +230,17 @@ export default function HomePage() {
             <h2 className="section-title">
               Skateparker <span className="text-[var(--pink)]">i DK</span>
             </h2>
-            <p className="mt-2 text-[var(--text-muted)]">Find dit næste spot — street, bowl og indoor.</p>
+            <p className="mt-2 text-[var(--text-muted)]">
+              Find dit næste spot — street, bowl og indoor. Start med{" "}
+              <Link href="/skateparker/by/koebenhavn" className="link-lime">
+                København
+              </Link>{" "}
+              eller{" "}
+              <Link href="/skateparker/region/hovedstaden" className="link-lime">
+                din region
+              </Link>
+              .
+            </p>
           </div>
           <Link href="/skateparker" className="section-link">
             Se kortet →

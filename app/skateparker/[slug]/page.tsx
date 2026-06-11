@@ -4,6 +4,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ArticleJsonLd, BreadcrumbJsonLd, SkateparkPlaceJsonLd } from "@/components/json-ld";
 import { SkateparkMapLink, SkateparkMetaBadges } from "@/components/skatepark-meta";
 import { getSkatepark, getSkateparkSlugs } from "@/lib/content/skateparks";
+import { cityHubSlug, getCityHub } from "@/lib/content/skatepark-hubs";
 import { editorialTeamName, siteUrl } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -37,16 +38,28 @@ export default async function SkateparkPage({ params }: Props) {
 
   const { frontmatter, content, readingMinutes } = data;
   const canonical = `${siteUrl}/skateparker/${slug}`;
+  const cityHub = getCityHub(cityHubSlug(frontmatter.city));
+  const cityHubHref = cityHub ? `/skateparker/by/${cityHub.slug}` : null;
+
+  const breadcrumbItems = [
+    { href: "/", label: "Forside" },
+    { href: "/skateparker", label: "Skateparker" },
+    ...(cityHubHref ? [{ href: cityHubHref, label: frontmatter.city }] : []),
+    { href: `/skateparker/${slug}`, label: frontmatter.title },
+  ];
+
+  const jsonBreadcrumbItems = [
+    { name: "Forside", url: `${siteUrl}/` },
+    { name: "Skateparker", url: `${siteUrl}/skateparker` },
+    ...(cityHubHref
+      ? [{ name: frontmatter.city, url: `${siteUrl}${cityHubHref}` }]
+      : []),
+    { name: frontmatter.title, url: canonical },
+  ];
 
   return (
     <article className="page-wrap mx-auto max-w-3xl">
-      <BreadcrumbJsonLd
-        items={[
-          { name: "Forside", url: `${siteUrl}/` },
-          { name: "Skateparker", url: `${siteUrl}/skateparker` },
-          { name: frontmatter.title, url: canonical },
-        ]}
-      />
+      <BreadcrumbJsonLd items={jsonBreadcrumbItems} />
       <SkateparkPlaceJsonLd
         name={frontmatter.title}
         description={frontmatter.description}
@@ -63,13 +76,7 @@ export default async function SkateparkPage({ params }: Props) {
         datePublished={frontmatter.updated}
         dateModified={frontmatter.updated}
       />
-      <Breadcrumbs
-        items={[
-          { href: "/", label: "Forside" },
-          { href: "/skateparker", label: "Skateparker" },
-          { href: `/skateparker/${slug}`, label: frontmatter.title },
-        ]}
-      />
+      <Breadcrumbs items={breadcrumbItems} />
       <header className="mt-6">
         <p className="text-xs font-bold uppercase tracking-widest text-[var(--text-dim)]">
           {frontmatter.city} · {frontmatter.region} · {readingMinutes} min · {editorialTeamName}

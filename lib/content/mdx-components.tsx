@@ -1,8 +1,11 @@
 import type { ComponentProps } from "react";
+import { MdxLink } from "@/components/mdx-link";
+import { ShopLink } from "@/components/shop-link";
 
 /** Legacy export — styling lives in .prose-skatehub in globals.css */
 export const mdxComponents = {
-  a: (props: ComponentProps<"a">) => <a {...props} className="link-lime" />,
+  a: MdxLink,
+  ShopLink,
   h2: (props: ComponentProps<"h2">) => (
     <h2 {...props} className="font-display mt-12 scroll-mt-24 text-3xl uppercase tracking-wide text-[var(--text)] first:mt-0" />
   ),

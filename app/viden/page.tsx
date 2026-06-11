@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ContentCardGrid } from "@/components/content-card-grid";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { BreadcrumbJsonLd } from "@/components/json-ld";
@@ -10,7 +11,7 @@ const PAGE_URL = `${siteUrl}/viden`;
 export const metadata: Metadata = {
   title: "Guides og viden — tricks, vedligeholdelse og how-to",
   description:
-    "Lær ollie, BMX-tricks for begyndere, vedligeholdelse af skateboard og skift af kuglelejer — praktisk viden til skaters.",
+    "Lær ollie, kickflip, BMX-tricks, vedligeholdelse af skateboard, skatepark-etikette og skift af kuglelejer — praktisk viden til skaters i Danmark.",
   alternates: { canonical: PAGE_URL },
 };
 
@@ -30,7 +31,15 @@ export default function VidenPage() {
         Learn <span className="text-[var(--cyan)]">& shred</span>
       </h1>
       <p className="page-lead">
-        Tricks, vedligeholdelse og how-to — praktisk viden til din næste session i parken eller på gaden.
+        Tricks, vedligeholdelse og how-to — praktisk viden til din næste session. Skal du opgradere gear? Se{" "}
+        <Link href="/guides/bedste-skateboard-hjul" className="link-lime">
+          skateboard-hjul
+        </Link>{" "}
+        og{" "}
+        <Link href="/koebsguides" className="link-lime">
+          købsguides
+        </Link>
+        .
       </p>
       <ContentCardGrid items={guides} altCards />
     </div>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AffiliateDisclosure } from "@/components/affiliate-disclosure";
+import { ProductSearch } from "@/components/product-search";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ArticleJsonLd, BreadcrumbJsonLd } from "@/components/json-ld";
 import { getGuide, getGuideSlugs } from "@/lib/content/guides";
@@ -76,6 +77,14 @@ export default async function GuidePage({ params }: Props) {
       </div>
 
       <div className="prose-skatehub mt-10">{content}</div>
+
+      {frontmatter.hub === "koebsguides" ? (
+        <ProductSearch
+          defaultQuery={frontmatter.tags?.slice(0, 2).join(" ") || "skateboard"}
+          placement={`guide-${slug}`}
+          title="Find produkter til denne guide"
+        />
+      ) : null}
 
       {frontmatter.hub ? (
         <p className="mt-12 text-sm text-[var(--text-dim)]">
