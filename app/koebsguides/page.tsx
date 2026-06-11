@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { ContentCardGrid } from "@/components/content-card-grid";
-import { ProductSearch } from "@/components/product-search";
+import { KoebsguidesProductSearch } from "@/components/koebsguides-product-search";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { BreadcrumbJsonLd } from "@/components/json-ld";
 import { listGuidesByHub } from "@/lib/content/guides";
@@ -15,6 +16,10 @@ export const metadata: Metadata = {
     "Bedste skateboard til børn, BMX cykel, stunt scooter, skateboard-hjul og prisguide — redaktionelle købsguides til skate, BMX og løbehjul.",
   alternates: { canonical: PAGE_URL },
 };
+
+function ProductSearchFallback() {
+  return <div className="mt-12 h-72 animate-pulse border-2 border-[var(--border)] bg-[var(--bg-card)]" />;
+}
 
 export default function KoebsguidesPage() {
   const guides = listGuidesByHub("koebsguides");
@@ -54,7 +59,9 @@ export default function KoebsguidesPage() {
         </Link>
         .
       </p>
-      <ProductSearch placement="koebsguides-hub" />
+      <Suspense fallback={<ProductSearchFallback />}>
+        <KoebsguidesProductSearch />
+      </Suspense>
       <div className="mt-16">
         <ContentCardGrid items={guides} />
       </div>

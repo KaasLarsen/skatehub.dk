@@ -53,6 +53,7 @@ export const GUIDE_KIND_LABELS: Record<GuideKind, string> = {
 export const FEATURED_BY_LEVEL: Record<GuideLevel, string[]> = {
   ny: [
     "bedste-skateboard-til-boern",
+    "skateboard-vs-bmx-til-boern",
     "hvad-koster-det-at-starte-paa-skateboard",
     "stunt-scooter-vs-loebehjul",
     "bedste-skatehjelm",
@@ -62,18 +63,18 @@ export const FEATURED_BY_LEVEL: Record<GuideLevel, string[]> = {
   begynder: [
     "bedste-skateboard-til-begyndere",
     "hvordan-laerer-man-ollie",
+    "hvornaar-skifter-du-deck-og-griptape",
+    "shove-it-guide-begyndere",
+    "manual-guide-begyndere",
     "vedligeholdelse-af-skateboard",
     "bmx-tricks-for-begyndere",
-    "bedste-knaebeskyttere-skate",
-    "bedste-trick-loebehjul",
   ],
   ovet: [
-    "bedste-skateboard-hjul",
     "kickflip-guide-begyndere",
+    "bedste-skateboard-trucks",
+    "bedste-skateboard-hjul",
     "saadan-skifter-du-kuglelejer",
     "bedste-bmx-cykel",
-    "bmx-stoerrelsesguide",
-    "vedligeholdelse-af-skateboard",
   ],
 };
 
@@ -174,6 +175,42 @@ const CATALOG: Record<string, GuideCatalogMeta> = {
     sports: ["skateboard"],
     kinds: ["tricks"],
   },
+  "shove-it-guide-begyndere": {
+    levels: ["begynder"],
+    sports: ["skateboard"],
+    kinds: ["tricks"],
+  },
+  "heelflip-guide-begyndere": {
+    levels: ["ovet"],
+    sports: ["skateboard"],
+    kinds: ["tricks"],
+  },
+  "pop-shove-it-guide": {
+    levels: ["begynder", "ovet"],
+    sports: ["skateboard"],
+    kinds: ["tricks"],
+  },
+  "manual-guide-begyndere": {
+    levels: ["begynder"],
+    sports: ["skateboard"],
+    kinds: ["tricks"],
+  },
+  "bedste-skateboard-trucks": {
+    levels: ["begynder", "ovet"],
+    sports: ["skateboard"],
+    kinds: ["koeb", "vedligeholdelse"],
+  },
+  "hvornaar-skifter-du-deck-og-griptape": {
+    levels: ["begynder", "ovet"],
+    sports: ["skateboard"],
+    kinds: ["koeb", "vedligeholdelse"],
+  },
+  "skateboard-vs-bmx-til-boern": {
+    levels: ["ny"],
+    sports: ["skateboard", "bmx"],
+    kinds: ["koeb"],
+    foraeldre: true,
+  },
 };
 
 function inferMeta(guide: GuideFrontmatter): GuideCatalogMeta {
@@ -189,7 +226,7 @@ function inferMeta(guide: GuideFrontmatter): GuideCatalogMeta {
   if (tags.some((t) => t.includes("løbehjul") || t.includes("scooter"))) sports.push("loebehjul");
   if (tags.some((t) => t.includes("hjelm") || t.includes("beskytt") || t.includes("knæ")))
     sports.push("beskyttelse");
-  if (tags.some((t) => t.includes("skateboard") || t.includes("longboard") || t.includes("kickflip")))
+  if (tags.some((t) => t.includes("skateboard") || t.includes("longboard") || t.includes("kickflip") || t.includes("shove") || t.includes("heelflip") || t.includes("manual") || t.includes("ollie") || t.includes("trucks") || t.includes("deck") || t.includes("griptape")))
     sports.push("skateboard");
   if (sports.length === 0) sports.push("generelt");
 

@@ -1,61 +1,56 @@
 "use client";
 
-import { useCallback, useState } from "react";
-import type { ProductHit, SearchMeta } from "@/lib/search/types";
+import Link from "next/link";
+import { useEffect, useRef } from "react";
+import type { ProductHit } from "@/lib/search/types";
 import { ProductCard } from "@/components/product-card";
+import { gearPageHref } from "@/lib/content/guide-product-queries";
+import { useProductSearch } from "@/lib/search/use-product-search";
 
 export type ProductSearchChip = { label: string; q: string; max?: number };
 
 const QUICK_CHIPS: ProductSearchChip[] = [
-  { label: "Skateboard", q: "skateboard complete" },
+  { label: "Complete boards", q: "skateboard complete" },
   { label: "Begynder board", q: "skateboard begynder", max: 800 },
-  { label: "Longboard", q: "longboard cruiser" },
-  { label: "BMX", q: "bmx" },
+  { label: "Skateboard-hjul", q: "skateboard hjul" },
+  { label: "Trucks", q: "skateboard trucks" },
+  { label: "Griptape & deck", q: "skateboard deck griptape" },
+  { label: "BMX", q: "bmx cykel" },
   { label: "Trick-løbehjul", q: "stunt scooter trick" },
   { label: "Skatehjelm", q: "skate hjelm helmet" },
-  { label: "Beskyttelse", q: "knæbeskyttelse albuebeskyttelse" },
-  { label: "Griptape", q: "griptape" },
+  { label: "Beskyttelse", q: "knæbeskyttelse skate" },
   { label: "Under 500 kr", q: "skateboard", max: 500 },
 ];
 
-type ApiResponse = { source: string; products: ProductHit[]; meta: SearchMeta };
-
 type Props = {
   defaultQuery?: string;
+  defaultMax?: number;
   placement?: string;
   title?: string;
+  /** Hent produkter automatisk ved load (købsguides). */
+  autoLoad?: boolean;
+  moreHref?: string;
 };
 
 export function ProductSearch({
   defaultQuery = "",
+  defaultMax,
   placement = "product-search",
   title = "Find gear hos vores partnere",
+  autoLoad = false,
+  moreHref,
 }: Props) {
-  const [query, setQuery] = useState(defaultQuery);
-  const [max, setMax] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [data, setData] = useState<ApiResponse | null>(null);
-  const [lastQuery, setLastQuery] = useState("");
+  const { query, setQuery, max, setMax, loading, error, data, lastQuery, search } = useProductSearch(
+    defaultQuery,
+    defaultMax ?? null,
+  );
+  const autoRan = useRef(false);
 
-  const search = useCallback(async (q: string, budgetMax: number | null) => {
-    setLoading(true);
-    setError(null);
-    setLastQuery(q);
-    try {
-      const params = new URLSearchParams({ q });
-      if (budgetMax != null) params.set("max", String(budgetMax));
-      const r = await fetch(`/api/search?${params.toString()}`);
-      if (!r.ok) throw new Error("Søgning fejlede");
-      const json = (await r.json()) as ApiResponse;
-      setData(json);
-    } catch {
-      setError("Kunne ikke hente produkter lige nu — prøv igen om lidt.");
-      setData(null);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+  useEffect(() => {
+    if (!autoLoad || !defaultQuery.trim() || autoRan.current) return;
+    autoRan.current = true;
+    void search(defaultQuery, defaultMax ?? null);
+  }, [autoLoad, defaultQuery, defaultMax, search]);
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,11 +66,17 @@ export function ProductSearch({
   };
 
   const total = data?.products.length ?? 0;
+  const browseHref = moreHref ?? gearPageHref({ q: query || defaultQuery, max: defaultMax, title });
 
   return (
-    <section className="mt-12 border-2 border-[var(--border-strong)] bg-[var(--bg-elevated)] p-6 shadow-[4px_4px_0_0_var(--pink)]">
+    <section
+      id="gear"
+      className="mt-12 border-2 border-[var(--border-strong)] bg-[var(--bg-elevated)] p-6 shadow-[4px_4px_0_0_var(--pink)]"
+    >
       <h2 className="font-display text-2xl uppercase tracking-wide text-[var(--text)] sm:text-3xl">{title}</h2>
-      <p className="mt-2 text-sm text-[var(--text-muted)]">Søg på tværs af vores shop-partnere.</p>
+      <p className="mt-2 text-sm text-[var(--text-muted)]">
+        Søg på tværs af vores shop-partnere — billede, pris og link direkte til forhandleren.
+      </p>
 
       <form onSubmit={onSubmit} className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-end">
         <label className="flex-1">
@@ -84,7 +85,7 @@ export function ProductSearch({
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Fx skateboard, BMX, hjelm, griptape…"
+            placeholder="Fx skateboard complete, BMX, hjelm…"
             className="w-full border-2 border-[var(--border-strong)] bg-[var(--bg)] px-4 py-3 text-[var(--text)] placeholder:text-[var(--text-dim)] focus:border-[var(--lime)] focus:outline-none"
           />
         </label>
@@ -127,12 +128,19 @@ export function ProductSearch({
 
       {error && <p className="mt-4 text-sm text-[var(--pink)]">{error}</p>}
 
+      {loading && !data ? (
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {[...Array(6)].map((_, i) => (
+            <div key={i} className="h-72 animate-pulse border-2 border-[var(--border)] bg-[var(--bg-card)]" />
+          ))}
+        </div>
+      ) : null}
+
       {data && (
         <div className="mt-6 space-y-4">
           {total === 0 ? (
             <p className="text-sm text-[var(--text-muted)]">
-              Ingen produkter matchede{lastQuery ? ` “${lastQuery}”` : ""} lige nu. Prøv fx “skateboard”, “BMX”
-              eller “hjelm”.
+              Ingen produkter matchede{lastQuery ? ` “${lastQuery}”` : ""} lige nu. Prøv en af kategorierne ovenfor.
             </p>
           ) : (
             <p className="text-sm text-[var(--text-muted)]">
@@ -145,7 +153,7 @@ export function ProductSearch({
 
           {total > 0 && (
             <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {data.products.map((p) => (
+              {data.products.map((p: ProductHit) => (
                 <li key={`${p.merchant}-${p.url}`}>
                   <ProductCard product={p} placement={placement} />
                 </li>
@@ -154,6 +162,15 @@ export function ProductSearch({
           )}
         </div>
       )}
+
+      {autoLoad && total > 0 ? (
+        <p className="mt-6 text-center text-sm text-[var(--text-dim)]">
+          Vil du søge bredere?{" "}
+          <Link href={browseHref} className="link-lime">
+            Åbn fuld produktsøgning
+          </Link>
+        </p>
+      ) : null}
     </section>
   );
 }

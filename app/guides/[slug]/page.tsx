@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ProductSearch } from "@/components/product-search";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ArticleJsonLd, BreadcrumbJsonLd } from "@/components/json-ld";
+import { getGuideProductQuery, gearPageHref } from "@/lib/content/guide-product-queries";
 import { getGuide, getGuideSlugs } from "@/lib/content/guides";
 import { editorialTeamName, siteUrl } from "@/lib/site";
 
@@ -39,6 +40,8 @@ export default async function GuidePage({ params }: Props) {
   const { frontmatter, content, readingMinutes } = data;
   const canonical = `${siteUrl}/guides/${slug}`;
   const published = frontmatter.published || frontmatter.updated;
+  const productQuery =
+    frontmatter.hub === "koebsguides" ? getGuideProductQuery(slug, frontmatter.tags) : null;
 
   return (
     <article className="page-wrap mx-auto max-w-3xl">
@@ -73,11 +76,14 @@ export default async function GuidePage({ params }: Props) {
 
       <div className="prose-skatehub mt-10">{content}</div>
 
-      {frontmatter.hub === "koebsguides" ? (
+      {productQuery ? (
         <ProductSearch
-          defaultQuery={frontmatter.tags?.slice(0, 2).join(" ") || "skateboard"}
+          defaultQuery={productQuery.q}
+          defaultMax={productQuery.max}
+          autoLoad
           placement={`guide-${slug}`}
-          title="Find produkter til denne guide"
+          title={productQuery.title ?? "Find produkter til denne guide"}
+          moreHref={gearPageHref(productQuery)}
         />
       ) : null}
 
