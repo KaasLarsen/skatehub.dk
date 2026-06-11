@@ -7,7 +7,10 @@ import { AdSenseConsentGate } from "@/components/adsense-consent-gate";
 import { CookieBanner } from "@/components/cookie-banner";
 import { GraffitiBackdrop } from "@/components/graffiti-backdrop";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/json-ld";
+import { getAdsenseClientId } from "@/lib/adsense-config";
 import { siteDescription, siteName, siteUrl } from "@/lib/site";
+
+const adsenseClient = getAdsenseClientId();
 
 const bebas = Bebas_Neue({
   variable: "--font-bebas",
@@ -45,6 +48,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
   },
   alternates: { canonical: siteUrl },
+  other: {
+    "google-adsense-account": adsenseClient,
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -53,6 +59,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       lang="da"
       className={`${bebas.variable} ${barlow.variable} ${marker.variable} h-full scroll-smooth antialiased`}
     >
+      <head>
+        <meta name="google-adsense-account" content={adsenseClient} />
+      </head>
       <body className="flex min-h-full flex-col font-sans text-[var(--text)]">
         <GraffitiBackdrop />
         <AdSenseConsentGate />
