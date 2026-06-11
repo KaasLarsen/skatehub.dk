@@ -48,6 +48,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
   },
   alternates: { canonical: siteUrl },
+  verification: {
+    google: "y02OrmsKFDhctN0mis5Zl2nmeuGAGjtXNbOQodcQPIM",
+  },
   other: {
     "google-adsense-account": adsenseClient,
   },
