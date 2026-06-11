@@ -74,6 +74,12 @@ export default function CookiepolitikPage() {
             <td>Varierer</td>
             <td>Ja — ved klik til tredjepart</td>
           </tr>
+          <tr>
+            <td>YouTube (youtube-nocookie.com)</td>
+            <td>Indlejrede undervisningsvideoer — indlæses først efter klik på «Afspil video»</td>
+            <td>Varierer — se Google</td>
+            <td>Ja — ved afspilning</td>
+          </tr>
         </tbody>
       </table>
       <p className="text-sm text-[var(--text-dim)]">
