@@ -15,22 +15,28 @@ export const metadata: Metadata = {
 
 const heroLinks = [
   {
-    href: "/guides/bedste-skateboard-hjul",
-    label: "Bedste hjul",
+    href: "/guides/bedste-skate-sko-til-begyndere",
+    label: "Skate-sko",
     tag: "Køb",
-    blurb: "Størrelse, durometer og street vs. park.",
+    blurb: "Flad sål og forstærkning til skatepark.",
   },
   {
-    href: "/guides/bedste-bmx-cykel",
-    label: "Bedste BMX",
+    href: "/guides/skateboard-stoerrelsesguide",
+    label: "Deck-størrelse",
     tag: "Køb",
-    blurb: "Complete guide til park og street — 2026.",
+    blurb: "7,75 eller 8,0? Tabel efter alder og højde.",
   },
   {
-    href: "/guides/stunt-scooter-vs-loebehjul",
-    label: "Stunt vs. løbehjul",
+    href: "/guides/bedste-beskyttelsesaet-boern",
+    label: "Beskyttelse børn",
     tag: "Parents",
-    blurb: "Forældre: køb det rigtige løbehjul til skatepark.",
+    blurb: "Hjelm, knæ, albue og håndled i ét sæt.",
+  },
+  {
+    href: "/guides/saadan-skubber-du-paa-skateboard",
+    label: "Lær at skubbe",
+    tag: "Learn",
+    blurb: "Push, dreje og stop — før ollie.",
   },
   {
     href: "/guides/hvad-koster-det-at-starte-paa-skateboard",
@@ -61,12 +67,6 @@ const heroLinks = [
     label: "Learn",
     tag: "How-to",
     blurb: "Tricks, vedligeholdelse og guides til begyndere.",
-  },
-  {
-    href: "/guides/bedste-skateboard-til-begyndere",
-    label: "Start her",
-    tag: "Newbie",
-    blurb: "Bedste skateboard til begyndere — komplet guide.",
   },
 ];
 
@@ -200,16 +200,16 @@ export default function HomePage() {
             <h2 className="section-title">Fresh guides</h2>
             <p className="mt-2 text-[var(--text-muted)]">
               Vores top-købsguides —{" "}
-              <Link href="/guides/bedste-skateboard-til-boern" className="link-lime">
-                board til børn
+              <Link href="/guides/skateboard-stoerrelsesguide" className="link-lime">
+                størrelse
               </Link>
               ,{" "}
-              <Link href="/guides/bedste-bmx-cykel" className="link-lime">
-                BMX
+              <Link href="/guides/bedste-skate-sko-til-begyndere" className="link-lime">
+                skate-sko
               </Link>{" "}
               og{" "}
-              <Link href="/guides/bedste-skateboard-hjul" className="link-lime">
-                hjul
+              <Link href="/guides/bedste-beskyttelsesaet-boern" className="link-lime">
+                beskyttelse
               </Link>
               .
             </p>

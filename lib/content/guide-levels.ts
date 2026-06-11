@@ -56,6 +56,7 @@ export const FEATURED_BY_LEVEL: Record<GuideLevel, string[]> = {
     "skateboard-vs-bmx-til-boern",
     "hvad-koster-det-at-starte-paa-skateboard",
     "bedste-skate-sko-til-begyndere",
+    "skateboard-stoerrelsesguide",
     "complete-vs-custom-skateboard",
     "stunt-scooter-vs-loebehjul",
     "bedste-skatehjelm",
@@ -69,6 +70,7 @@ export const FEATURED_BY_LEVEL: Record<GuideLevel, string[]> = {
     "bedste-skateboard-til-begyndere",
     "hvordan-laerer-man-ollie",
     "saadan-dropper-du-ind-i-en-skatepark",
+    "saadan-koerer-du-fakie",
     "indendoers-skatehaller-danmark",
     "hvornaar-skifter-du-deck-og-griptape",
     "shove-it-guide-begyndere",
@@ -78,6 +80,7 @@ export const FEATURED_BY_LEVEL: Record<GuideLevel, string[]> = {
   ],
   ovet: [
     "180-ollie-guide-begyndere",
+    "varial-kickflip-guide",
     "kickflip-guide-begyndere",
     "bedste-skateboard-trucks",
     "bedste-skateboard-hjul",
@@ -190,6 +193,32 @@ const CATALOG: Record<string, GuideCatalogMeta> = {
     sports: ["skateboard", "generelt"],
     kinds: ["viden"],
     foraeldre: true,
+  },
+  "skateboard-stoerrelsesguide": {
+    levels: ["ny", "begynder"],
+    sports: ["skateboard"],
+    kinds: ["koeb"],
+    foraeldre: true,
+  },
+  "bedste-skateboard-kuglelejer": {
+    levels: ["begynder", "ovet"],
+    sports: ["skateboard"],
+    kinds: ["koeb", "vedligeholdelse"],
+  },
+  "saadan-koerer-du-fakie": {
+    levels: ["begynder"],
+    sports: ["skateboard"],
+    kinds: ["tricks", "viden"],
+  },
+  "skateparker-med-bmx-tilladt": {
+    levels: ["ny", "begynder"],
+    sports: ["bmx", "generelt"],
+    kinds: ["viden"],
+  },
+  "varial-kickflip-guide": {
+    levels: ["ovet"],
+    sports: ["skateboard"],
+    kinds: ["tricks"],
   },
   "hvordan-laerer-man-ollie": {
     levels: ["begynder"],

@@ -1,7 +1,7 @@
 import type { ComponentProps } from "react";
 import { MdxLink } from "@/components/mdx-link";
 import { ShopLink } from "@/components/shop-link";
-import { BmxBunnyHopSteps, HeelflipSteps, KickflipSteps, ManualSteps, Ollie180Steps, OllieSteps, PopShoveItSteps, ShoveItSteps } from "@/components/trick-steps/presets";
+import { BmxBunnyHopSteps, HeelflipSteps, KickflipSteps, ManualSteps, Ollie180Steps, OllieSteps, PopShoveItSteps, ShoveItSteps, VarialKickflipSteps } from "@/components/trick-steps/presets";
 import { ProductPicks } from "@/components/product-picks";
 import { YouTubeEmbed } from "@/components/youtube-embed";
 
@@ -19,6 +19,7 @@ export const mdxComponents = {
   HeelflipSteps,
   PopShoveItSteps,
   ManualSteps,
+  VarialKickflipSteps,
   h2: (props: ComponentProps<"h2">) => (
     <h2 {...props} className="font-display mt-12 scroll-mt-24 text-3xl uppercase tracking-wide text-[var(--text)] first:mt-0" />
   ),

@@ -489,3 +489,64 @@ export function Ollie180Steps() {
     />
   );
 }
+
+export function VarialKickflipSteps() {
+  return (
+    <TrickStepsGrid
+      title="Varial kickflip — visuelt trin for trin"
+      steps={[
+        {
+          title: "Stilling",
+          caption: "Kickflip-placering med bagfod klar til pop og let scoop.",
+          illustration: (
+            <TrickSvgFrame>
+              <Ground />
+              <SkateboardSide cy={152} />
+              <FootSide x={96} y={132} angle={-6} />
+              <FootSide x={182} y={136} angle={10} accent="#00e5ff" />
+            </TrickSvgFrame>
+          ),
+        },
+        {
+          title: "Pop + scoop",
+          caption: "Pop ollie og scoop tail mod shove-it retning.",
+          illustration: (
+            <TrickSvgFrame>
+              <Ground />
+              <SkateboardTopDown cy={124} spin={35} lift={16} />
+              <FootSide x={88} y={118} angle={-14} accent="#ff2d8b" />
+              <FootSide x={176} y={142} angle={4} />
+              <PopBurst x={92} y={168} />
+            </TrickSvgFrame>
+          ),
+        },
+        {
+          title: "Flick + flip",
+          caption: "Flick som kickflip mens boardet roterer 180°.",
+          illustration: (
+            <TrickSvgFrame>
+              <Ground />
+              <SkateboardSide cx={162} cy={98} angle={20} lift={44} />
+              <FlipArc x={162} y={118} />
+              <SpinArc x={160} y={108} />
+              <FootSide x={118} y={72} angle={4} />
+              <FootSide x={214} y={78} angle={-36} accent="#ff2d8b" />
+            </TrickSvgFrame>
+          ),
+        },
+        {
+          title: "Catch",
+          caption: "Catch over bolts — flip og rotation færdig.",
+          illustration: (
+            <TrickSvgFrame>
+              <Ground />
+              <SkateboardTopDown cy={128} spin={180} />
+              <FootSide x={124} y={84} accent="#c8f542" />
+              <FootSide x={196} y={80} angle={-4} accent="#00e5ff" />
+            </TrickSvgFrame>
+          ),
+        },
+      ]}
+    />
+  );
+}

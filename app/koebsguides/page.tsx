@@ -42,20 +42,20 @@ export default function KoebsguidesPage() {
           hvad det koster at starte
         </Link>
         . Populære guides:{" "}
-        <Link href="/guides/bedste-skateboard-til-boern" className="link-lime">
-          board til børn
+        <Link href="/guides/skateboard-stoerrelsesguide" className="link-lime">
+          deck-størrelse
         </Link>
         ,{" "}
-        <Link href="/guides/stunt-scooter-vs-loebehjul" className="link-lime">
-          stunt vs. løbehjul
+        <Link href="/guides/bedste-skate-sko-til-begyndere" className="link-lime">
+          skate-sko
         </Link>
         ,{" "}
-        <Link href="/guides/bedste-bmx-cykel" className="link-lime">
-          bedste BMX
+        <Link href="/guides/bedste-beskyttelsesaet-boern" className="link-lime">
+          beskyttelsessæt
         </Link>{" "}
         og{" "}
-        <Link href="/guides/bedste-skateboard-hjul" className="link-lime">
-          skateboard-hjul
+        <Link href="/guides/bedste-skateboard-kuglelejer" className="link-lime">
+          kuglelejer
         </Link>
         .
       </p>

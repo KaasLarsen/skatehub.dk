@@ -95,6 +95,16 @@ const QUERIES: Record<string, GuideProductQuery> = {
     max: 700,
     title: "BMX-hjelme",
   },
+  "skateboard-stoerrelsesguide": {
+    q: "skateboard complete 7.75",
+    max: 900,
+    title: "Completes efter størrelse",
+  },
+  "bedste-skateboard-kuglelejer": {
+    q: "skateboard kuglelejer abec",
+    max: 400,
+    title: "Skateboard bearings",
+  },
 };
 
 export function getGuideProductQuery(slug: string, tags: string[] = []): GuideProductQuery {
