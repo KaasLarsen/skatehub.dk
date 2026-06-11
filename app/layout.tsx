@@ -3,6 +3,7 @@ import { Bebas_Neue, Barlow, Permanent_Marker } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { AdSenseConsentGate } from "@/components/adsense-consent-gate";
 import { CookieBanner } from "@/components/cookie-banner";
 import { GraffitiBackdrop } from "@/components/graffiti-backdrop";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/json-ld";
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     >
       <body className="flex min-h-full flex-col font-sans text-[var(--text)]">
         <GraffitiBackdrop />
+        <AdSenseConsentGate />
         <CookieBanner />
         <OrganizationJsonLd />
         <WebSiteJsonLd url={siteUrl} />

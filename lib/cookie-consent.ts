@@ -1,6 +1,7 @@
 export type CookieConsentChoice = "all" | "necessary";
 
 export const COOKIE_CONSENT_KEY = "skatehub-cookie-consent";
+export const COOKIE_CONSENT_EVENT = "skatehub-consent";
 
 export function getStoredConsent(): CookieConsentChoice | null {
   if (typeof window === "undefined") return null;
@@ -14,5 +15,5 @@ export function setStoredConsent(choice: CookieConsentChoice): void {
 }
 
 export function dispatchConsentChoice(choice: CookieConsentChoice): void {
-  window.dispatchEvent(new CustomEvent("skatehub-consent", { detail: choice }));
+  window.dispatchEvent(new CustomEvent(COOKIE_CONSENT_EVENT, { detail: { choice } }));
 }
