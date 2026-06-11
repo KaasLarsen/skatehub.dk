@@ -115,6 +115,16 @@ const QUERIES: Record<string, GuideProductQuery> = {
     max: 200,
     title: "Griptape",
   },
+  "bedste-skateboard-deck": {
+    q: "skateboard deck",
+    max: 700,
+    title: "Skateboard decks",
+  },
+  "bmx-vs-almindelig-cykel": {
+    q: "bmx cykel complete",
+    max: 3500,
+    title: "Freestyle BMX",
+  },
 };
 
 export function getGuideProductQuery(slug: string, tags: string[] = []): GuideProductQuery {

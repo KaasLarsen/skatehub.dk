@@ -64,6 +64,7 @@ export const FEATURED_BY_LEVEL: Record<GuideLevel, string[]> = {
     "bedste-beskyttelsesaet-boern",
     "er-skateboard-farligt-for-boern",
     "er-bmx-farligt-for-boern",
+    "bmx-vs-almindelig-cykel",
     "bedste-skateboard-til-begyndere",
     "skatepark-etikette-danmark",
   ],
@@ -79,6 +80,7 @@ export const FEATURED_BY_LEVEL: Record<GuideLevel, string[]> = {
     "manual-guide-begyndere",
     "vedligeholdelse-af-skateboard",
     "bmx-tricks-for-begyndere",
+    "vedligeholdelse-af-bmx",
     "hvordan-laver-man-bunny-hop-bmx",
     "skateboard-ordliste",
   ],
@@ -91,6 +93,7 @@ export const FEATURED_BY_LEVEL: Record<GuideLevel, string[]> = {
     "saadan-skifter-du-kuglelejer",
     "bedste-bmx-cykel",
     "bedste-griptape-skateboard",
+    "bedste-skateboard-deck",
   ],
 };
 
@@ -327,6 +330,22 @@ const CATALOG: Record<string, GuideCatalogMeta> = {
     levels: ["ny", "begynder"],
     sports: ["skateboard", "generelt"],
     kinds: ["viden"],
+  },
+  "vedligeholdelse-af-bmx": {
+    levels: ["begynder", "ovet"],
+    sports: ["bmx"],
+    kinds: ["vedligeholdelse"],
+  },
+  "bmx-vs-almindelig-cykel": {
+    levels: ["ny"],
+    sports: ["bmx"],
+    kinds: ["koeb"],
+    foraeldre: true,
+  },
+  "bedste-skateboard-deck": {
+    levels: ["begynder", "ovet"],
+    sports: ["skateboard"],
+    kinds: ["koeb", "vedligeholdelse"],
   },
 };
 

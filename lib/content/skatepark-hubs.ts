@@ -41,7 +41,7 @@ export const SKATEPARK_CITY_HUBS: {
     description:
       "Skateparker på Fyn: Odense Skatehal, udendørs spots og praktisk info til skaters fra hele Syddanmark.",
     paragraphs: [
-      "Odense og Fyn har et **tæt skate-miljø** centreret om både udendørs beton og indendørs faciliteter. **Odense Skatehal** er regionens go-to spot når vejret ikke samarbejder — med street, miniramp og flat til alle niveauer.",
+      "Odense og Fyn har et **tæt skate-miljø** centreret om både udendørs beton og indendørs faciliteter. **Odense Skatehal** er regionens go-to spot når vejret ikke samarbejder — med street, miniramp og flat til alle niveauer. **[Svendborg](/skateparker/svendborg-skatepark)** supplerer på Sydfyn.",
       "Fyn binder skaters fra Svendborg, Middelfart og Nyborg sammen om fælles sessioner. Indendørs haller har typisk krav om hjelm og adgangsbetaling — tjek altid aktuelle åbningstider.",
       "Planlægger du tur fra Jylland? Se [Streetdome Haderslev](/skateparker/streetdome-haderslev), [Esbjerg](/skateparker/esbjerg-skatepark) mod vest eller [København](/skateparker/by/koebenhavn) over Storebælt.",
     ],
@@ -218,7 +218,7 @@ export const SKATEPARK_REGION_HUBS: {
     description:
       "Alle skateparker i Region Hovedstaden: København, Roskilde, Ishøj, Fælledparken, Enghave og mere.",
     paragraphs: [
-      "Region Hovedstaden har **Danmarks tætteste koncentration af skateparker** — fra ikoniske KBH-spots (Fælledparken, Enghave, Amager Strand) til [Gentofte](/skateparker/gentofte-skatepark), [Helsingør](/skateparker/helsingoer-skatepark), [Køge](/skateparker/skatepark-koege), [Slagelse Laden](/skateparker/slagelse-skatepark) og [Næstved Skatehal](/skateparker/naestved-skatehal).",
+      "Region Hovedstaden har **Danmarks tætteste koncentration af skateparker** — fra ikoniske KBH-spots (Fælledparken, Enghave, Amager Strand) til [Gentofte](/skateparker/gentofte-skatepark), [Rønne på Bornholm](/skateparker/roenne-bornholm-skatepark), [Helsingør](/skateparker/helsingoer-skatepark), [Køge](/skateparker/skatepark-koege), [Slagelse Laden](/skateparker/slagelse-skatepark) og [Næstved Skatehal](/skateparker/naestved-skatehal).",
       "Udendørs parker er gratis og åbne det meste af året. Indendørs haller ligger ofte i nærområdet når regn rammer.",
       "Begyndere bør starte med flade zoner og beskyttelse — se vores købsguides til skateboard, hjelm og knæbeskyttere.",
     ],
@@ -230,7 +230,7 @@ export const SKATEPARK_REGION_HUBS: {
     description:
       "Skateparker i Midtjylland: Aarhus, Silkeborg og indendørs skatehaller — street, miniramp og BMX.",
     paragraphs: [
-      "Midtjylland centreres om **Aarhus** med indendørs og udendørs faciliteter. **[Holstebro Rans Park](/skateparker/holstebro-rans-park)**, **[Herning](/skateparker/herning-skatepark)**, **[Horsens](/skateparker/horsens-skatepark)**, **[Randers](/skateparker/randers-skatepark)** og **[Silkeborg](/skateparker/silkeborg-skatepark)** supplerer med kommunale parker.",
+      "Midtjylland centreres om **Aarhus** med indendørs og udendørs faciliteter. **[Holstebro Rans Park](/skateparker/holstebro-rans-park)**, **[Herning](/skateparker/herning-skatepark)**, **[Viborg](/skateparker/viborg-skatepark)**, **[Horsens](/skateparker/horsens-skatepark)**, **[Randers](/skateparker/randers-skatepark)** og **[Silkeborg](/skateparker/silkeborg-skatepark)** supplerer med kommunale parker.",
       "Vinteren drives indendørs; sommeren flytter sessionen ud på beton. BMX og løbehjul er velkomne de fleste steder.",
       "Find den rigtige størrelse BMX og beskyttelse i vores købsguides før du besøger parken.",
     ],
@@ -242,7 +242,7 @@ export const SKATEPARK_REGION_HUBS: {
     description:
       "Skateparker i Syddanmark: Odense, Esbjerg, Kolding, Vejle — Fyn og Vestjylland samlet.",
     paragraphs: [
-      "Syddanmark dækker **Fyn og det sydlige Jylland** — med skatehaller i Odense, **[Streetdome Haderslev](/skateparker/streetdome-haderslev)** og udendørs parker i Esbjerg, Kolding, **[Fredericia](/skateparker/fredericia-skatepark)** og Vejle.",
+      "Syddanmark dækker **Fyn og det sydlige Jylland** — med skatehaller i Odense, **[Streetdome Haderslev](/skateparker/streetdome-haderslev)** og udendørs parker i Esbjerg, Kolding, **[Fredericia](/skateparker/fredericia-skatepark)**, **[Svendborg](/skateparker/svendborg-skatepark)**, **[Sønderborg](/skateparker/soenderborg-skatepark)** og Vejle.",
       "Regionen har færre parker end hovedstaden, men miljøet er tæt og engageret. Indendørs haller er vigtige om vinteren.",
       "Planlæg roadtrip mellem byerne — se by-hub-siderne for detaljer per område.",
     ],
@@ -254,7 +254,7 @@ export const SKATEPARK_REGION_HUBS: {
     description:
       "Skateparker i Nordjylland: Aalborg og regionens spots — street, bowl og tips til besøg.",
     paragraphs: [
-      "Nordjyllands stærkeste udendørs anlæg findes i **[Aalborg](/skateparker/aalborg-skatepark)** ved havnefronten. **[Frederikshavn Skatehal](/skateparker/frederikshavn-skatehal)** dækker det nordligste Jylland indendørs.",
+      "Nordjyllands stærkeste udendørs anlæg findes i **[Aalborg](/skateparker/aalborg-skatepark)** ved havnefronten. **[Frederikshavn Skatehal](/skateparker/frederikshavn-skatehal)** og **[Thisted](/skateparker/thisted-skatepark)** dækker nordvest og det nordligste Jylland.",
       "Mindre byer har ofte kommunale miniparks — Aalborg og Frederikshavn fungerer som regionale hubs.",
       "Vind og vejr fra Limfjorden og Nordsøen — vedligehold dit board efter våde og saltede sessioner.",
     ],
