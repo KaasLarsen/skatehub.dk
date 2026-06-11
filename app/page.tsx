@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ContentCardGrid } from "@/components/content-card-grid";
 import { AffiliateDisclosure } from "@/components/affiliate-disclosure";
+import { OldschoolDeck } from "@/components/graffiti-backdrop";
 import { listGuidesByHub } from "@/lib/content/guides";
 import { listSkateparks } from "@/lib/content/skateparks";
 import { editorialTeamName, siteName, siteUrl } from "@/lib/site";
@@ -9,7 +10,7 @@ import { editorialTeamName, siteName, siteUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: `${siteName} – Danmarks hub for skate, BMX og skateparker`,
   description:
-    "Købsguides til skateboards, BMX og trick-løbehjul — plus Danmarks voksende database over skateparker. Long-tail SEO-indhold skrevet til danske begyndere og entusiaster.",
+    "Købsguides til skateboards, BMX og trick-løbehjul — plus Danmarks voksende database over skateparker. For skaters, af skaters.",
   alternates: { canonical: siteUrl },
 };
 
@@ -17,22 +18,62 @@ const heroLinks = [
   {
     href: "/koebsguides",
     label: "Købsguides",
-    blurb: "Bedste skateboard, BMX, løbehjul og beskyttelse",
+    tag: "Shop",
+    blurb: "Boards, BMX, løbehjul og beskyttelse — hvad skal du vælge?",
   },
   {
     href: "/skateparker",
     label: "Skateparker",
-    blurb: "Find parker i hele Danmark — adresse, kort og faciliteter",
+    tag: "Spots",
+    blurb: "Find parker i hele DK — street, bowl, indoor og kort.",
   },
   {
     href: "/viden",
-    label: "Guides & viden",
-    blurb: "Tricks, vedligeholdelse og praktiske how-to guides",
+    label: "Learn",
+    tag: "How-to",
+    blurb: "Tricks, vedligeholdelse og guides til begyndere.",
   },
   {
     href: "/guides/bedste-skateboard-til-begyndere",
     label: "Start her",
-    blurb: "Bedste skateboard til begyndere — komplet guide",
+    tag: "Newbie",
+    blurb: "Bedste skateboard til begyndere — komplet guide.",
+  },
+];
+
+const marqueeWords = [
+  "SHRED",
+  "OLLIE",
+  "KICKFLIP",
+  "BMX",
+  "BOWL",
+  "STREET",
+  "SKATEPARK",
+  "OLDSCHOOL",
+  "LØBEHJUL",
+  "GRIND",
+  "SESSION",
+  "SKATEHUB",
+];
+
+const cultureCards = [
+  {
+    title: "Find dit setup",
+    body: "Complete boards, custom builds, BMX og trick-løbehjul — vi guider dig til det rigtige gear.",
+    href: "/koebsguides",
+    accent: "lime" as const,
+  },
+  {
+    title: "Find din park",
+    body: "Danmarks største skatepark-database. Adresse, kort, street/bowl og om BMX er tilladt.",
+    href: "/skateparker",
+    accent: "pink" as const,
+  },
+  {
+    title: "Lær noget nyt",
+    body: "Ollie, vedligeholdelse, størrelsesguider — praktisk viden til din næste session.",
+    href: "/viden",
+    accent: "cyan" as const,
   },
 ];
 
@@ -41,49 +82,96 @@ export default function HomePage() {
   const skateparker = listSkateparks().slice(0, 4);
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-10">
-      <section className="rounded-3xl bg-gradient-to-br from-orange-50 via-white to-stone-50 px-6 py-12 ring-1 ring-orange-100 sm:px-10">
-        <p className="text-sm font-semibold uppercase tracking-wider text-orange-800/80">Danmarks skate-hub</p>
-        <h1 className="mt-3 max-w-3xl text-4xl font-semibold tracking-tight text-stone-900 sm:text-5xl">
-          Skateboards, BMX, løbehjul og skateparker
-        </h1>
-        <p className="mt-5 max-w-2xl text-lg leading-relaxed text-stone-700">
-          {siteName} er en nicheportal — ikke bare endnu en affiliate-side. Vi bygger købsguides, praktisk viden og{" "}
-          <strong className="font-semibold text-stone-800">Danmarks største database over skateparker</strong>, så du
-          kan finde udstyr og spots uden at google dig ihjel.
-        </p>
-
-        <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-          {heroLinks.map((item) => (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                className="block rounded-xl border border-white/80 bg-white/80 p-4 shadow-sm ring-1 ring-stone-200/60 transition hover:border-orange-200 hover:shadow-md"
-              >
-                <span className="font-semibold text-stone-900">{item.label}</span>
-                <span className="mt-1 block text-sm text-stone-600">{item.blurb}</span>
-              </Link>
-            </li>
+    <div className="page-wrap">
+      {/* Marquee strip */}
+      <div className="mb-8 overflow-hidden border-y-2 border-[var(--border-strong)] bg-[var(--bg-elevated)] py-2">
+        <div className="marquee-track flex w-max gap-8 whitespace-nowrap">
+          {[...marqueeWords, ...marqueeWords].map((word, i) => (
+            <span
+              key={`${word}-${i}`}
+              className="font-display text-sm uppercase tracking-[0.3em] text-[var(--text-dim)]"
+            >
+              {word}
+              <span className="mx-4 text-[var(--pink)]">✦</span>
+            </span>
           ))}
-        </ul>
+        </div>
+      </div>
 
-        <p className="mt-6 text-sm text-stone-600">
-          Skrevet af{" "}
-          <Link href="/om-os" className="font-medium text-orange-900 underline decoration-orange-300 underline-offset-4">
-            {editorialTeamName}
-          </Link>
-          . Målet er 100–300+ artikler over 1–3 år — med fokus på long-tail søgninger som «bedste skateboard til begyndere»
-          og «skatepark København».
-        </p>
+      {/* Hero */}
+      <section className="hero-panel">
+        <div className="grid items-center gap-10 lg:grid-cols-[1fr_auto]">
+          <div>
+            <p className="font-graffiti text-xl text-[var(--pink)] sm:text-2xl">Danmarks skate-hub</p>
+            <h1 className="graffiti-tag font-display mt-2 text-5xl uppercase leading-[0.95] tracking-wide text-[var(--text)] sm:text-7xl">
+              Skate.
+              <br />
+              <span className="text-[var(--lime)]">Shred.</span>
+              <br />
+              Ride.
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-[var(--text-muted)]">
+              {siteName} er for alle der kører board, BMX eller trick-løbehjul. Købsguides, skatepark-spots og
+              how-to — <strong className="text-[var(--text)]">bygget til skater-kulturen</strong>, ikke endnu en
+              kedelig shop-side.
+            </p>
+
+            <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+              {heroLinks.map((item, i) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={`sticker-card group ${i % 2 === 1 ? "sticker-card-alt" : ""}`}
+                  >
+                    <span className="badge-neon">{item.tag}</span>
+                    <span className="mt-2 block font-display text-xl uppercase tracking-wide text-[var(--text)] group-hover:text-[var(--lime)]">
+                      {item.label}
+                    </span>
+                    <span className="mt-1 block text-sm text-[var(--text-muted)]">{item.blurb}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <p className="mt-6 text-sm text-[var(--text-dim)]">
+              Skrevet af{" "}
+              <Link href="/om-os" className="link-lime">
+                {editorialTeamName}
+              </Link>
+            </p>
+          </div>
+
+          <div className="hidden justify-center lg:flex">
+            <OldschoolDeck className="h-[420px] w-auto drop-shadow-[8px_8px_0_rgba(200,245,66,0.3)]" />
+          </div>
+        </div>
       </section>
 
-      <section className="mt-16">
-        <div className="flex items-end justify-between gap-4">
+      {/* Culture cards */}
+      <section className="mt-16 grid gap-4 sm:grid-cols-3">
+        {cultureCards.map((card) => (
+          <Link
+            key={card.href}
+            href={card.href}
+            className={`sticker-card ${card.accent === "pink" ? "sticker-card-alt" : ""}`}
+          >
+            <h3 className="font-display text-2xl uppercase tracking-wide text-[var(--text)]">{card.title}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">{card.body}</p>
+            <span className="mt-4 inline-block text-xs font-bold uppercase tracking-widest text-[var(--lime)]">
+              Gå til →
+            </span>
+          </Link>
+        ))}
+      </section>
+
+      {/* Guides section */}
+      <section className="mt-20">
+        <div className="flex items-end justify-between gap-4 border-b-2 border-[var(--border)] pb-4">
           <div>
-            <h2 className="text-2xl font-semibold text-stone-900">Populære købsguides</h2>
-            <p className="mt-2 text-stone-600">50 % af indholdet — produktguides med affiliate-indtægter.</p>
+            <h2 className="section-title">Fresh guides</h2>
+            <p className="mt-2 text-[var(--text-muted)]">Boards, BMX, løbehjul og beskyttelse.</p>
           </div>
-          <Link href="/koebsguides" className="shrink-0 text-sm font-medium text-orange-900 hover:underline">
+          <Link href="/koebsguides" className="section-link">
             Se alle →
           </Link>
         </div>
@@ -91,39 +179,20 @@ export default function HomePage() {
         <ContentCardGrid items={koebsguides} />
       </section>
 
-      <section className="mt-16">
-        <div className="flex items-end justify-between gap-4">
+      {/* Skateparks section */}
+      <section className="mt-20">
+        <div className="flex items-end justify-between gap-4 border-b-2 border-[var(--border)] pb-4">
           <div>
-            <h2 className="text-2xl font-semibold text-stone-900">Skateparker i Danmark</h2>
-            <p className="mt-2 text-stone-600">Vores differentiator — indhold webshops sjældent laver.</p>
+            <h2 className="section-title">
+              Skateparker <span className="text-[var(--pink)]">i DK</span>
+            </h2>
+            <p className="mt-2 text-[var(--text-muted)]">Find dit næste spot — street, bowl og indoor.</p>
           </div>
-          <Link href="/skateparker" className="shrink-0 text-sm font-medium text-orange-900 hover:underline">
+          <Link href="/skateparker" className="section-link">
             Se kortet →
           </Link>
         </div>
-        <ContentCardGrid items={skateparker} hrefPrefix="/skateparker" />
-      </section>
-
-      <section className="mt-16 grid gap-6 sm:grid-cols-3">
-        <div className="rounded-2xl border border-stone-200 bg-white p-6">
-          <h3 className="font-semibold text-stone-900">SEO-strategi</h3>
-          <p className="mt-2 text-sm leading-relaxed text-stone-600">
-            Hundredvis af long-tail søgninger — «BMX størrelsesguide», «trick-løbehjul til 10-årig», «indendørs
-            skateparker i Danmark».
-          </p>
-        </div>
-        <div className="rounded-2xl border border-stone-200 bg-white p-6">
-          <h3 className="font-semibold text-stone-900">Monetisering</h3>
-          <p className="mt-2 text-sm leading-relaxed text-stone-600">
-            Affiliate (SkatePro, Blue Tomato m.fl.), Google AdSense — senere Ezoic/Mediavine og direkte samarbejder.
-          </p>
-        </div>
-        <div className="rounded-2xl border border-stone-200 bg-white p-6">
-          <h3 className="font-semibold text-stone-900">Indholdsplan</h3>
-          <p className="mt-2 text-sm leading-relaxed text-stone-600">
-            50 % købsguides · 30 % skateparker · 20 % community og how-to — opdateres løbende.
-          </p>
-        </div>
+        <ContentCardGrid items={skateparker} hrefPrefix="/skateparker" altCards />
       </section>
     </div>
   );

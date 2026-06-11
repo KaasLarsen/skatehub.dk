@@ -8,10 +8,10 @@ export const metadata: Metadata = {
 
 export default function CookiepolitikPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10">
-      <h1 className="text-4xl font-semibold tracking-tight text-stone-900">Cookiepolitik</h1>
-      <p className="mt-2 text-sm text-stone-500">Sidst opdateret: {legalPagesUpdatedDisplay}</p>
-      <div className="mt-6 space-y-4 text-stone-700">
+    <div className="page-wrap mx-auto max-w-3xl">
+      <h1 className="page-title text-4xl sm:text-5xl">Cookiepolitik</h1>
+      <p className="mt-2 text-sm text-[var(--text-dim)]">Sidst opdateret: {legalPagesUpdatedDisplay}</p>
+      <div className="mt-6 space-y-4 text-[var(--text-muted)]">
         <p>
           {siteName} bruger cookies til at huske dit cookievalg og — med dit samtykke — til statistik (Google
           Analytics) og annoncer (Google AdSense).

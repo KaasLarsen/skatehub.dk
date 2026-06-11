@@ -8,13 +8,13 @@ export const metadata: Metadata = {
 
 export default function KontaktPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10">
-      <h1 className="text-4xl font-semibold tracking-tight text-stone-900">Kontakt</h1>
-      <p className="mt-4 text-lg text-stone-700">
+    <div className="page-wrap mx-auto max-w-3xl">
+      <h1 className="page-title">Kontakt</h1>
+      <p className="page-lead">
         Har du rettelser til en skatepark, forslag til guides eller ønsker om samarbejde? Skriv til os.
       </p>
-      <p className="mt-6">
-        <a href={`mailto:${contactEmail}`} className="text-lg font-medium text-orange-900 underline underline-offset-4">
+      <p className="mt-8">
+        <a href={`mailto:${contactEmail}`} className="link-lime text-xl font-bold">
           {contactEmail}
         </a>
       </p>

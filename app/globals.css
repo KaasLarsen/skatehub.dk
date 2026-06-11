@@ -1,18 +1,182 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fafaf9;
-  --foreground: #1c1917;
+  --bg: #0f0f0f;
+  --bg-elevated: #181818;
+  --bg-card: #222222;
+  --bg-card-hover: #2a2a2a;
+  --text: #f5f0e6;
+  --text-muted: #a3a3a3;
+  --text-dim: #737373;
+  --lime: #c8f542;
+  --lime-dim: #9bc428;
+  --pink: #ff2d8b;
+  --cyan: #00e5ff;
+  --border: #3a3a3a;
+  --border-strong: #525252;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --font-sans: var(--font-barlow);
+  --font-display: var(--font-bebas);
+  --font-graffiti: var(--font-marker);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background-color: var(--bg);
+  color: var(--text);
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(200, 245, 66, 0.07), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 50%, rgba(255, 45, 139, 0.05), transparent),
+    radial-gradient(ellipse 50% 30% at 0% 80%, rgba(0, 229, 255, 0.04), transparent);
+}
+
+.font-display {
+  font-family: var(--font-bebas), system-ui, sans-serif;
+  letter-spacing: 0.04em;
+}
+
+.font-graffiti {
+  font-family: var(--font-marker), cursive;
+}
+
+.link-lime {
+  color: var(--lime);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--lime) 40%, transparent);
+  text-underline-offset: 3px;
+  transition: color 0.15s;
+}
+.link-lime:hover {
+  color: #e8ff8a;
+}
+
+.page-wrap {
+  @apply mx-auto max-w-6xl px-4 py-10;
+}
+
+.page-title {
+  @apply font-display text-5xl uppercase leading-none tracking-wide text-[var(--text)] sm:text-6xl;
+}
+
+.page-lead {
+  @apply mt-4 max-w-3xl text-lg leading-relaxed text-[var(--text-muted)];
+}
+
+.section-title {
+  @apply font-display text-3xl uppercase tracking-wide text-[var(--text)] sm:text-4xl;
+}
+
+.section-link {
+  @apply shrink-0 text-sm font-semibold uppercase tracking-wider text-[var(--lime)] transition hover:text-[#e8ff8a];
+}
+
+.sticker-card {
+  @apply block h-full border-2 border-[var(--border-strong)] bg-[var(--bg-card)] p-5 transition;
+  box-shadow: 4px 4px 0 0 var(--lime);
+}
+.sticker-card:hover {
+  @apply border-[var(--lime)] bg-[var(--bg-card-hover)];
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 0 var(--pink);
+}
+
+.sticker-card-alt {
+  box-shadow: 4px 4px 0 0 var(--pink);
+}
+.sticker-card-alt:hover {
+  box-shadow: 6px 6px 0 0 var(--cyan);
+}
+
+.hero-panel {
+  @apply relative overflow-hidden border-2 border-[var(--border-strong)] bg-[var(--bg-elevated)] px-6 py-10 sm:px-10 sm:py-14;
+  box-shadow: 8px 8px 0 0 var(--lime);
+}
+
+.info-panel {
+  @apply border-2 border-[var(--border-strong)] bg-[var(--bg-card)] p-5;
+  box-shadow: 4px 4px 0 0 color-mix(in srgb, var(--cyan) 60%, transparent);
+}
+
+.badge-neon {
+  @apply inline-block border border-[var(--lime)] bg-[color-mix(in_srgb,var(--lime)_12%,transparent)] px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-[var(--lime)];
+}
+
+.badge-pink {
+  @apply border-[var(--pink)] bg-[color-mix(in_srgb,var(--pink)_12%,transparent)] text-[var(--pink)];
+}
+
+.badge-cyan {
+  @apply border-[var(--cyan)] bg-[color-mix(in_srgb,var(--cyan)_12%,transparent)] text-[var(--cyan)];
+}
+
+.prose-skatehub h2 {
+  @apply font-display mt-12 scroll-mt-24 text-3xl uppercase tracking-wide text-[var(--text)] first:mt-0;
+}
+.prose-skatehub h3 {
+  @apply mt-8 text-xl font-bold text-[var(--lime)];
+}
+.prose-skatehub p {
+  @apply mt-4 text-lg leading-relaxed text-[var(--text-muted)];
+}
+.prose-skatehub ul,
+.prose-skatehub ol {
+  @apply mt-4 space-y-2 pl-6 text-lg text-[var(--text-muted)];
+}
+.prose-skatehub ul {
+  @apply list-disc;
+}
+.prose-skatehub ol {
+  @apply list-decimal;
+}
+.prose-skatehub a {
+  color: var(--lime);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--lime) 40%, transparent);
+  text-underline-offset: 3px;
+}
+.prose-skatehub a:hover {
+  color: #e8ff8a;
+}
+.prose-skatehub strong {
+  @apply font-bold text-[var(--text)];
+}
+.prose-skatehub table {
+  @apply mt-6 w-full border-collapse text-sm;
+}
+.prose-skatehub th,
+.prose-skatehub td {
+  @apply border border-[var(--border)] px-3 py-2 text-left;
+}
+.prose-skatehub th {
+  @apply bg-[var(--bg-card)] font-bold text-[var(--lime)];
+}
+
+.nav-active {
+  @apply border-[var(--lime)] bg-[color-mix(in_srgb,var(--lime)_15%,transparent)] text-[var(--lime)];
+}
+
+.nav-idle {
+  @apply border-transparent text-[var(--text-muted)] hover:border-[var(--border)] hover:bg-[var(--bg-card)] hover:text-[var(--text)];
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 28s linear infinite;
+}
+
+.graffiti-tag {
+  text-shadow:
+    2px 2px 0 var(--pink),
+    -1px -1px 0 var(--cyan);
 }

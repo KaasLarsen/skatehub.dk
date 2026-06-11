@@ -7,6 +7,8 @@ const difficultyLabels: Record<SkateparkDifficulty, string> = {
   blandet: "Blandet niveau",
 };
 
+const badgeRotate = ["", "badge-pink", "badge-cyan", ""];
+
 export function SkateparkMetaBadges({
   features,
   difficulty,
@@ -24,11 +26,8 @@ export function SkateparkMetaBadges({
 
   return (
     <ul className="flex flex-wrap gap-2">
-      {badges.map((label) => (
-        <li
-          key={label}
-          className="rounded-full bg-orange-50 px-2.5 py-1 text-xs font-medium text-orange-900 ring-1 ring-orange-100"
-        >
+      {badges.map((label, i) => (
+        <li key={label} className={`badge-neon ${badgeRotate[i % badgeRotate.length]}`}>
           {label}
         </li>
       ))}
@@ -52,13 +51,8 @@ export function SkateparkMapLink({
   const href = `https://www.google.com/maps/search/?api=1&query=${query}`;
 
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center gap-1 text-sm font-medium text-orange-900 underline decoration-orange-300 underline-offset-4 hover:text-orange-950"
-    >
-      Åbn i Google Maps
+    <a href={href} target="_blank" rel="noopener noreferrer" className="link-lime text-sm font-bold uppercase tracking-wider">
+      Åbn i Google Maps →
     </a>
   );
 }

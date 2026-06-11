@@ -39,7 +39,7 @@ export default async function SkateparkPage({ params }: Props) {
   const canonical = `${siteUrl}/skateparker/${slug}`;
 
   return (
-    <article className="mx-auto max-w-3xl px-4 py-10">
+    <article className="page-wrap mx-auto max-w-3xl">
       <BreadcrumbJsonLd
         items={[
           { name: "Forside", url: `${siteUrl}/` },
@@ -71,22 +71,22 @@ export default async function SkateparkPage({ params }: Props) {
         ]}
       />
       <header className="mt-6">
-        <p className="text-sm text-stone-500">
+        <p className="text-xs font-bold uppercase tracking-widest text-[var(--text-dim)]">
           {frontmatter.city} · {frontmatter.region} · {readingMinutes} min · {editorialTeamName}
         </p>
-        <h1 className="mt-2 text-4xl font-semibold tracking-tight text-stone-900">{frontmatter.title}</h1>
-        <p className="mt-4 text-lg leading-relaxed text-stone-700">{frontmatter.description}</p>
+        <h1 className="page-title mt-3 text-4xl sm:text-5xl">{frontmatter.title}</h1>
+        <p className="page-lead">{frontmatter.description}</p>
       </header>
 
-      <div className="mt-6 rounded-2xl border border-stone-200 bg-stone-50 p-5">
+      <div className="info-panel mt-6">
         <dl className="grid gap-3 text-sm sm:grid-cols-2">
           <div>
-            <dt className="font-medium text-stone-500">Adresse</dt>
-            <dd className="mt-1 text-stone-900">{frontmatter.address}</dd>
+            <dt className="text-xs font-bold uppercase tracking-widest text-[var(--lime)]">Adresse</dt>
+            <dd className="mt-1 text-[var(--text)]">{frontmatter.address}</dd>
           </div>
           <div>
-            <dt className="font-medium text-stone-500">By / region</dt>
-            <dd className="mt-1 text-stone-900">
+            <dt className="text-xs font-bold uppercase tracking-widest text-[var(--lime)]">By / region</dt>
+            <dd className="mt-1 text-[var(--text)]">
               {frontmatter.city}, {frontmatter.region}
             </dd>
           </div>

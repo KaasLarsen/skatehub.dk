@@ -8,10 +8,10 @@ import { SkateHubLogo } from "@/components/skatehub-logo";
 type NavItem = { href: string; label: string; activePrefix?: string };
 
 const nav: NavItem[] = [
-  { href: "/koebsguides", label: "Købsguides", activePrefix: "/koebsguides" },
+  { href: "/koebsguides", label: "Shop guides", activePrefix: "/koebsguides" },
   { href: "/skateparker", label: "Skateparker", activePrefix: "/skateparker" },
-  { href: "/viden", label: "Guides & viden", activePrefix: "/viden" },
-  { href: "/guides", label: "Alle artikler", activePrefix: "/guides" },
+  { href: "/viden", label: "Learn", activePrefix: "/viden" },
+  { href: "/guides", label: "Alt indhold", activePrefix: "/guides" },
 ];
 
 function navItemActive(item: NavItem, pathname: string) {
@@ -41,17 +41,17 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header className="border-b border-stone-200/80 bg-white/90 backdrop-blur">
-      <div className="mx-auto max-w-6xl px-4 py-4">
+    <header className="relative z-20 border-b-2 border-[var(--border-strong)] bg-[color-mix(in_srgb,var(--bg)_92%,transparent)] backdrop-blur-md">
+      <div className="mx-auto max-w-6xl px-4 py-3">
         <div className="flex items-center justify-between gap-4">
           <Link href="/" className="group flex min-w-0 items-center gap-3">
-            <SkateHubLogo className="h-9 w-9 shrink-0" />
-            <div className="min-w-0">
-              <span className="text-xl font-semibold tracking-tight text-stone-900 transition-colors group-hover:text-orange-700">
+            <SkateHubLogo className="h-11 w-11 shrink-0 transition group-hover:scale-105" />
+            <div className="min-w-0 leading-none">
+              <span className="font-display text-2xl uppercase tracking-widest text-[var(--text)] transition group-hover:text-[var(--lime)] sm:text-3xl">
                 SkateHub
               </span>
-              <span className="mt-0.5 block truncate text-xs text-stone-600 sm:text-[0.8125rem]">
-                Skate, BMX, løbehjul og skateparker i Danmark
+              <span className="font-graffiti mt-1 block truncate text-sm text-[var(--pink)] sm:text-base">
+                shred · roll · ride
               </span>
             </div>
           </Link>
@@ -61,10 +61,8 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
-                  navItemActive(item, pathname)
-                    ? "bg-orange-50 text-orange-900"
-                    : "text-stone-700 hover:bg-stone-100 hover:text-stone-900"
+                className={`border-2 px-3 py-1.5 text-xs font-bold uppercase tracking-wider transition ${
+                  navItemActive(item, pathname) ? "nav-active" : "nav-idle"
                 }`}
               >
                 {item.label}
@@ -74,7 +72,7 @@ export function SiteHeader() {
 
           <button
             type="button"
-            className="rounded-lg border border-stone-200 px-3 py-2 text-sm font-medium text-stone-700 md:hidden"
+            className="border-2 border-[var(--border-strong)] px-3 py-2 text-xs font-bold uppercase tracking-wider text-[var(--text)] md:hidden"
             aria-expanded={open}
             aria-controls={panelId}
             onClick={() => setOpen((v) => !v)}
@@ -84,13 +82,17 @@ export function SiteHeader() {
         </div>
 
         {open ? (
-          <nav id={panelId} className="mt-4 flex flex-col gap-1 border-t border-stone-100 pt-4 md:hidden" aria-label="Mobilmenu">
+          <nav
+            id={panelId}
+            className="mt-3 flex flex-col gap-1 border-t border-[var(--border)] pt-3 md:hidden"
+            aria-label="Mobilmenu"
+          >
             {nav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`rounded-lg px-3 py-2 text-sm font-medium ${
-                  navItemActive(item, pathname) ? "bg-orange-50 text-orange-900" : "text-stone-700"
+                className={`border-2 px-3 py-2 text-xs font-bold uppercase tracking-wider ${
+                  navItemActive(item, pathname) ? "nav-active" : "nav-idle"
                 }`}
               >
                 {item.label}

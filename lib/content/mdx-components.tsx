@@ -1,21 +1,20 @@
 import type { ComponentProps } from "react";
 
-const linkClass = "text-orange-800 underline decoration-orange-300 underline-offset-2 hover:text-orange-950";
-
+/** Legacy export — styling lives in .prose-skatehub in globals.css */
 export const mdxComponents = {
-  a: (props: ComponentProps<"a">) => <a {...props} className={linkClass} />,
+  a: (props: ComponentProps<"a">) => <a {...props} className="link-lime" />,
   h2: (props: ComponentProps<"h2">) => (
-    <h2 {...props} className="mt-12 scroll-mt-24 text-2xl font-semibold tracking-tight text-stone-900 first:mt-0" />
+    <h2 {...props} className="font-display mt-12 scroll-mt-24 text-3xl uppercase tracking-wide text-[var(--text)] first:mt-0" />
   ),
-  h3: (props: ComponentProps<"h3">) => <h3 {...props} className="mt-8 text-xl font-semibold text-stone-900" />,
-  p: (props: ComponentProps<"p">) => <p {...props} className="mt-4 text-lg leading-relaxed text-stone-700" />,
+  h3: (props: ComponentProps<"h3">) => <h3 {...props} className="mt-8 text-xl font-bold text-[var(--lime)]" />,
+  p: (props: ComponentProps<"p">) => <p {...props} className="mt-4 text-lg leading-relaxed text-[var(--text-muted)]" />,
   ul: (props: ComponentProps<"ul">) => (
-    <ul {...props} className="mt-4 list-disc space-y-2 pl-6 text-lg text-stone-700" />
+    <ul {...props} className="mt-4 list-disc space-y-2 pl-6 text-lg text-[var(--text-muted)]" />
   ),
   ol: (props: ComponentProps<"ol">) => (
-    <ol {...props} className="mt-4 list-decimal space-y-2 pl-6 text-lg text-stone-700" />
+    <ol {...props} className="mt-4 list-decimal space-y-2 pl-6 text-lg text-[var(--text-muted)]" />
   ),
-  strong: (props: ComponentProps<"strong">) => <strong {...props} className="font-semibold text-stone-900" />,
+  strong: (props: ComponentProps<"strong">) => <strong {...props} className="font-bold text-[var(--text)]" />,
 };
 
 export const guideMdxComponents = mdxComponents;

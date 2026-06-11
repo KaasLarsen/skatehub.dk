@@ -21,14 +21,14 @@ export function CookieBanner() {
 
   return (
     <div
-      className="fixed inset-x-0 bottom-0 z-[100] border-t border-stone-200 bg-white/95 px-4 py-4 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] backdrop-blur-sm"
+      className="fixed inset-x-0 bottom-0 z-[100] border-t-2 border-[var(--lime)] bg-[var(--bg-elevated)] px-4 py-4 shadow-[0_-8px_30px_rgba(0,0,0,0.5)]"
       role="dialog"
       aria-label="Om cookies"
     >
       <div className="mx-auto flex max-w-3xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
-        <p className="text-sm leading-relaxed text-stone-700">
+        <p className="text-sm leading-relaxed text-[var(--text-muted)]">
           Vi bruger cookies til statistik og annoncer, når det er aktiveret. Læs mere i{" "}
-          <Link href="/cookiepolitik" className="font-medium text-orange-900 underline underline-offset-2">
+          <Link href="/cookiepolitik" className="link-lime">
             cookiepolitikken
           </Link>
           .
@@ -37,14 +37,14 @@ export function CookieBanner() {
           <button
             type="button"
             onClick={() => choose("necessary")}
-            className="rounded-lg border border-stone-300 px-4 py-2 text-sm font-medium text-stone-700"
+            className="border-2 border-[var(--border-strong)] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[var(--text-muted)]"
           >
             Kun nødvendige
           </button>
           <button
             type="button"
             onClick={() => choose("all")}
-            className="rounded-lg bg-orange-600 px-4 py-2 text-sm font-medium text-white hover:bg-orange-700"
+            className="border-2 border-[var(--lime)] bg-[var(--lime)] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#0f0f0f] hover:bg-[#e8ff8a]"
           >
             Accepter
           </button>

@@ -8,10 +8,10 @@ export const metadata: Metadata = {
 
 export default function PrivatlivPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10">
-      <h1 className="text-4xl font-semibold tracking-tight text-stone-900">Privatlivspolitik</h1>
-      <p className="mt-2 text-sm text-stone-500">Sidst opdateret: {legalPagesUpdatedDisplay}</p>
-      <div className="mt-6 space-y-4 text-stone-700">
+    <div className="page-wrap mx-auto max-w-3xl">
+      <h1 className="page-title text-4xl sm:text-5xl">Privatlivspolitik</h1>
+      <p className="mt-2 text-sm text-[var(--text-dim)]">Sidst opdateret: {legalPagesUpdatedDisplay}</p>
+      <div className="mt-6 space-y-4 text-[var(--text-muted)]">
         <p>
           {siteName} behandler personoplysninger i overensstemmelse med gældende lovgivning. Vi indsamler primært
           anonymiseret statistik via cookies, når du har givet samtykke.

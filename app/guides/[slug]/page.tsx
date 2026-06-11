@@ -40,15 +40,15 @@ export default async function GuidePage({ params }: Props) {
   const canonical = `${siteUrl}/guides/${slug}`;
   const published = frontmatter.published || frontmatter.updated;
 
-  const breadcrumbItems = [
-    { name: "Forside", url: `${siteUrl}/` },
-    { name: "Guides", url: `${siteUrl}/guides` },
-    { name: frontmatter.title, url: canonical },
-  ];
-
   return (
-    <article className="mx-auto max-w-3xl px-4 py-10">
-      <BreadcrumbJsonLd items={breadcrumbItems} />
+    <article className="page-wrap mx-auto max-w-3xl">
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Forside", url: `${siteUrl}/` },
+          { name: "Guides", url: `${siteUrl}/guides` },
+          { name: frontmatter.title, url: canonical },
+        ]}
+      />
       <ArticleJsonLd
         title={frontmatter.title}
         description={frontmatter.description}
@@ -64,11 +64,11 @@ export default async function GuidePage({ params }: Props) {
         ]}
       />
       <header className="mt-6">
-        <p className="text-sm text-stone-500">
-          {readingMinutes} min læsning · Opdateret {frontmatter.updated} · {editorialTeamName}
+        <p className="text-xs font-bold uppercase tracking-widest text-[var(--text-dim)]">
+          {readingMinutes} min · Opdateret {frontmatter.updated} · {editorialTeamName}
         </p>
-        <h1 className="mt-2 text-4xl font-semibold tracking-tight text-stone-900">{frontmatter.title}</h1>
-        <p className="mt-4 text-lg leading-relaxed text-stone-700">{frontmatter.description}</p>
+        <h1 className="page-title mt-3 text-4xl sm:text-5xl">{frontmatter.title}</h1>
+        <p className="page-lead">{frontmatter.description}</p>
       </header>
 
       <div className="mt-6">
@@ -78,8 +78,8 @@ export default async function GuidePage({ params }: Props) {
       <div className="prose-skatehub mt-10">{content}</div>
 
       {frontmatter.hub ? (
-        <p className="mt-12 text-sm text-stone-600">
-          <Link href={`/${frontmatter.hub}`} className="font-medium text-orange-900 hover:underline">
+        <p className="mt-12 text-sm text-[var(--text-dim)]">
+          <Link href={`/${frontmatter.hub}`} className="link-lime">
             ← Tilbage til {frontmatter.hub === "koebsguides" ? "købsguides" : frontmatter.hub}
           </Link>
         </p>
