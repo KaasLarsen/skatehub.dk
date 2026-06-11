@@ -75,6 +75,26 @@ const QUERIES: Record<string, GuideProductQuery> = {
     max: 900,
     title: "Skateboards til børn",
   },
+  "bedste-skate-sko-til-begyndere": {
+    q: "vans skate sko",
+    max: 900,
+    title: "Skate-sko og sneakers",
+  },
+  "complete-vs-custom-skateboard": {
+    q: "skateboard complete",
+    max: 900,
+    title: "Complete skateboards",
+  },
+  "bedste-beskyttelsesaet-boern": {
+    q: "beskyttelses sæt skate",
+    max: 600,
+    title: "Beskyttelsessæt",
+  },
+  "bedste-bmx-hjelm": {
+    q: "bmx hjelm",
+    max: 700,
+    title: "BMX-hjelme",
+  },
 };
 
 export function getGuideProductQuery(slug: string, tags: string[] = []): GuideProductQuery {

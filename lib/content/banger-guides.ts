@@ -5,6 +5,9 @@ import { listGuidesByHub } from "@/lib/content/guides";
 export const BANGER_GUIDE_SLUGS = [
   "bedste-skateboard-til-boern",
   "hvad-koster-det-at-starte-paa-skateboard",
+  "bedste-skate-sko-til-begyndere",
+  "bedste-beskyttelsesaet-boern",
+  "complete-vs-custom-skateboard",
   "stunt-scooter-vs-loebehjul",
   "bedste-bmx-cykel",
   "bedste-skateboard-hjul",

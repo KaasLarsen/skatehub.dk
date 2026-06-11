@@ -1,7 +1,7 @@
 import type { ComponentProps } from "react";
 import { MdxLink } from "@/components/mdx-link";
 import { ShopLink } from "@/components/shop-link";
-import { BmxBunnyHopSteps, HeelflipSteps, KickflipSteps, ManualSteps, OllieSteps, PopShoveItSteps, ShoveItSteps } from "@/components/trick-steps/presets";
+import { BmxBunnyHopSteps, HeelflipSteps, KickflipSteps, ManualSteps, Ollie180Steps, OllieSteps, PopShoveItSteps, ShoveItSteps } from "@/components/trick-steps/presets";
 import { ProductPicks } from "@/components/product-picks";
 import { YouTubeEmbed } from "@/components/youtube-embed";
 
@@ -12,6 +12,7 @@ export const mdxComponents = {
   ProductPicks,
   YouTubeEmbed,
   OllieSteps,
+  Ollie180Steps,
   KickflipSteps,
   BmxBunnyHopSteps,
   ShoveItSteps,

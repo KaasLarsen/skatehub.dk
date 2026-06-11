@@ -428,3 +428,64 @@ export function ManualSteps() {
     />
   );
 }
+
+export function Ollie180Steps() {
+  return (
+    <TrickStepsGrid
+      title="180 ollie — visuelt trin for trin"
+      steps={[
+        {
+          title: "Stilling",
+          caption: "Samme fodplacering som ollie — bagfod på tail, forfod bag midten.",
+          illustration: (
+            <TrickSvgFrame>
+              <Ground />
+              <SkateboardSide cy={152} angle={0} />
+              <FootSide x={98} y={132} angle={-4} />
+              <FootSide x={188} y={136} angle={6} accent="#00e5ff" />
+            </TrickSvgFrame>
+          ),
+        },
+        {
+          title: "Pop",
+          caption: "Pop en solid ollie — høj nok til at få tid til at dreje kroppen.",
+          illustration: (
+            <TrickSvgFrame>
+              <Ground />
+              <SkateboardSide cx={158} cy={124} angle={-6} lift={24} />
+              <FootSide x={102} y={104} angle={-10} />
+              <FootSide x={182} y={108} angle={-8} accent="#00e5ff" />
+              <PopBurst x={94} y={152} />
+            </TrickSvgFrame>
+          ),
+        },
+        {
+          title: "Rotér",
+          caption: "Drej skuldre og hofter 180° i luften — boardet følger fødderne.",
+          illustration: (
+            <TrickSvgFrame>
+              <Ground />
+              <SkateboardSide cx={160} cy={100} angle={-4} lift={40} />
+              <SpinArc x={160} y={112} />
+              <FootSide x={118} y={78} angle={-24} />
+              <FootSide x={198} y={82} angle={-20} accent="#ff2d8b" />
+            </TrickSvgFrame>
+          ),
+        },
+        {
+          title: "Land fakie",
+          caption: "Land blødt baglæns — begge fødder over bolts, knæ bøjet.",
+          illustration: (
+            <TrickSvgFrame>
+              <Ground />
+              <SkateboardSide cx={160} cy={152} angle={4} />
+              <FootSide x={132} y={130} accent="#c8f542" />
+              <FootSide x={192} y={128} angle={8} accent="#00e5ff" />
+              <MotionArrow from={{ x: 160, y: 72 }} to={{ x: 160, y: 100 }} />
+            </TrickSvgFrame>
+          ),
+        },
+      ]}
+    />
+  );
+}

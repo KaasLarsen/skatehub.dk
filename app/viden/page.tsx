@@ -11,7 +11,7 @@ const PAGE_URL = `${siteUrl}/viden`;
 export const metadata: Metadata = {
   title: "Guides og viden — tricks, vedligeholdelse og how-to",
   description:
-    "Lær ollie, shove-it, kickflip, heelflip, manual, BMX-tricks, vedligeholdelse og skatepark-etikette — praktisk viden til skaters i Danmark.",
+    "Lær at skubbe, droppe ind, ollie, shove-it, kickflip og mere — plus indendørs skatehaller og skatepark-etikette. Praktisk viden til skaters i Danmark.",
   alternates: { canonical: PAGE_URL },
 };
 
