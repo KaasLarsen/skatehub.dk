@@ -55,6 +55,7 @@ export const FEATURED_BY_LEVEL: Record<GuideLevel, string[]> = {
     "bedste-skateboard-til-boern",
     "skateboard-vs-bmx-til-boern",
     "hvad-koster-det-at-starte-paa-skateboard",
+    "hvad-koster-det-at-starte-paa-bmx",
     "bedste-skate-sko-til-begyndere",
     "skateboard-stoerrelsesguide",
     "complete-vs-custom-skateboard",
@@ -62,6 +63,7 @@ export const FEATURED_BY_LEVEL: Record<GuideLevel, string[]> = {
     "bedste-skatehjelm",
     "bedste-beskyttelsesaet-boern",
     "er-skateboard-farligt-for-boern",
+    "er-bmx-farligt-for-boern",
     "bedste-skateboard-til-begyndere",
     "skatepark-etikette-danmark",
   ],
@@ -77,6 +79,8 @@ export const FEATURED_BY_LEVEL: Record<GuideLevel, string[]> = {
     "manual-guide-begyndere",
     "vedligeholdelse-af-skateboard",
     "bmx-tricks-for-begyndere",
+    "hvordan-laver-man-bunny-hop-bmx",
+    "skateboard-ordliste",
   ],
   ovet: [
     "180-ollie-guide-begyndere",
@@ -86,6 +90,7 @@ export const FEATURED_BY_LEVEL: Record<GuideLevel, string[]> = {
     "bedste-skateboard-hjul",
     "saadan-skifter-du-kuglelejer",
     "bedste-bmx-cykel",
+    "bedste-griptape-skateboard",
   ],
 };
 
@@ -295,6 +300,33 @@ const CATALOG: Record<string, GuideCatalogMeta> = {
     sports: ["skateboard", "bmx"],
     kinds: ["koeb"],
     foraeldre: true,
+  },
+  "hvad-koster-det-at-starte-paa-bmx": {
+    levels: ["ny"],
+    sports: ["bmx"],
+    kinds: ["koeb"],
+    foraeldre: true,
+  },
+  "er-bmx-farligt-for-boern": {
+    levels: ["ny"],
+    sports: ["bmx", "generelt"],
+    kinds: ["viden"],
+    foraeldre: true,
+  },
+  "hvordan-laver-man-bunny-hop-bmx": {
+    levels: ["begynder"],
+    sports: ["bmx"],
+    kinds: ["tricks"],
+  },
+  "bedste-griptape-skateboard": {
+    levels: ["begynder", "ovet"],
+    sports: ["skateboard"],
+    kinds: ["koeb", "vedligeholdelse"],
+  },
+  "skateboard-ordliste": {
+    levels: ["ny", "begynder"],
+    sports: ["skateboard", "generelt"],
+    kinds: ["viden"],
   },
 };
 

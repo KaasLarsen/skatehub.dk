@@ -10,6 +10,8 @@ export const BANGER_GUIDE_SLUGS = [
   "complete-vs-custom-skateboard",
   "stunt-scooter-vs-loebehjul",
   "bedste-bmx-cykel",
+  "bedste-bmx-til-boern",
+  "hvad-koster-det-at-starte-paa-bmx",
   "bedste-skateboard-hjul",
 ] as const;
 

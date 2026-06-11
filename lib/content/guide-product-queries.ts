@@ -105,6 +105,16 @@ const QUERIES: Record<string, GuideProductQuery> = {
     max: 400,
     title: "Skateboard bearings",
   },
+  "hvad-koster-det-at-starte-paa-bmx": {
+    q: "bmx cykel complete",
+    max: 3500,
+    title: "BMX completes til budget",
+  },
+  "bedste-griptape-skateboard": {
+    q: "griptape skateboard",
+    max: 200,
+    title: "Griptape",
+  },
 };
 
 export function getGuideProductQuery(slug: string, tags: string[] = []): GuideProductQuery {
