@@ -5,7 +5,18 @@ import { getSkateparkSlugs } from "@/lib/content/skateparks";
 import { siteUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = ["", "/koebsguides", "/skateparker", "/viden", "/guides", "/om-os", "/kontakt", "/privatliv", "/cookiepolitik"];
+  const staticPages = [
+    "",
+    "/koebsguides",
+    "/skateparker",
+    "/viden",
+    "/guides",
+    "/om-os",
+    "/kontakt",
+    "/privatliv",
+    "/cookiepolitik",
+    "/vilkaar",
+  ];
 
   const staticEntries: MetadataRoute.Sitemap = staticPages.map((path) => ({
     url: `${siteUrl}${path}`,

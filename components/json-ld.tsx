@@ -1,4 +1,5 @@
 import {
+  contactEmail,
   editorialTeamDescription,
   editorialTeamName,
   editorialTeamSchemaId,
@@ -28,6 +29,13 @@ export function OrganizationJsonLd() {
         name: siteName,
         url: siteUrl,
         logo: organizationLogoUrl,
+        email: contactEmail,
+        contactPoint: {
+          "@type": "ContactPoint",
+          contactType: "customer support",
+          email: contactEmail,
+          availableLanguage: ["Danish", "English"],
+        },
         sameAs: organizationSameAs(),
       }}
     />

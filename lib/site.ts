@@ -6,6 +6,10 @@ export const editorialTeamDescription =
   "SkateHub skriver guides om skateboards, BMX, trick-løbehjul, beskyttelse og skateparker i Danmark.";
 export const contactEmail = "info@skatehub.dk";
 
+/** Juridisk ansvarlig / dataansvarlig — kontakt via contactEmail. */
+export const legalEntityName = "SkateHub";
+export const legalEntityCountry = "Danmark";
+
 export const legalPagesUpdatedDisplay = "11. juni 2026";
 
 export const organizationSchemaId = `${siteUrl}/#organization`;

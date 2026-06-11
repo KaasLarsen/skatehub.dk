@@ -49,14 +49,25 @@ export function SiteFooter() {
                   Privatliv
                 </Link>
                 <Link href="/cookiepolitik" className="transition hover:text-[var(--lime)]">
-                  Cookiepolitik
+                  Cookies
+                </Link>
+                <Link href="/vilkaar" className="transition hover:text-[var(--lime)]">
+                  Vilkår
                 </Link>
               </nav>
             </div>
           </div>
         </div>
-        <p className="mt-8 border-t border-[var(--border)] pt-6 text-xs text-[var(--text-dim)]">
-          © {new Date().getFullYear()} {siteName} — skate or die (men bær hjelm).
+        <p className="mt-8 border-t border-[var(--border)] pt-6 text-xs leading-relaxed text-[var(--text-dim)]">
+          © {new Date().getFullYear()} {siteName}. Indhold kan indeholde affiliate-links og annoncer.{" "}
+          <Link href="/vilkaar" className="link-lime">
+            Vilkår
+          </Link>
+          {" · "}
+          <Link href="/privatliv" className="link-lime">
+            Privatliv
+          </Link>
+          .
         </p>
       </div>
     </footer>

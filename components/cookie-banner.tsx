@@ -27,9 +27,13 @@ export function CookieBanner() {
     >
       <div className="mx-auto flex max-w-3xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
         <p className="text-sm leading-relaxed text-[var(--text-muted)]">
-          Vi bruger cookies til statistik og annoncer, når det er aktiveret. Læs mere i{" "}
+          Vi bruger cookies til statistik og annoncer, når det er aktiveret. Læs{" "}
           <Link href="/cookiepolitik" className="link-lime">
             cookiepolitikken
+          </Link>{" "}
+          og{" "}
+          <Link href="/privatliv" className="link-lime">
+            privatlivspolitikken
           </Link>
           .
         </p>
