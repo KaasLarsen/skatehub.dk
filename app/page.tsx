@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ContentCardGrid } from "@/components/content-card-grid";
-import { AffiliateDisclosure } from "@/components/affiliate-disclosure";
 import { OldschoolDeck } from "@/components/graffiti-backdrop";
 import { listBangerGuides } from "@/lib/content/banger-guides";
 import { listSkateparks } from "@/lib/content/skateparks";
@@ -219,7 +218,6 @@ export default function HomePage() {
             Se alle →
           </Link>
         </div>
-        <AffiliateDisclosure compact />
         <ContentCardGrid items={koebsguides} />
       </section>
 

@@ -58,8 +58,8 @@ export function SiteFooter() {
             </div>
           </div>
         </div>
-        <p className="mt-8 border-t border-[var(--border)] pt-6 text-xs leading-relaxed text-[var(--text-dim)]">
-          © {new Date().getFullYear()} {siteName}. Indhold kan indeholde affiliate-links og annoncer.{" "}
+        <p className="mt-8 border-t border-[var(--border)] pt-6 text-xs text-[var(--text-dim)]">
+          © {new Date().getFullYear()} {siteName}.{" "}
           <Link href="/vilkaar" className="link-lime">
             Vilkår
           </Link>
@@ -67,7 +67,6 @@ export function SiteFooter() {
           <Link href="/privatliv" className="link-lime">
             Privatliv
           </Link>
-          .
         </p>
       </div>
     </footer>

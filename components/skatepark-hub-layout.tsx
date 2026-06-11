@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { AffiliateDisclosure } from "@/components/affiliate-disclosure";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { BreadcrumbJsonLd } from "@/components/json-ld";
 import { SkateparkMetaBadges } from "@/components/skatepark-meta";
@@ -57,8 +56,6 @@ export function SkateparkHubLayout({
           );
         })}
       </div>
-
-      <AffiliateDisclosure compact />
 
       <section className="mt-12">
         <h2 className="section-title">

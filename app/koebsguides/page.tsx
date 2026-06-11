@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ContentCardGrid } from "@/components/content-card-grid";
-import { AffiliateDisclosure } from "@/components/affiliate-disclosure";
 import { ProductSearch } from "@/components/product-search";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { BreadcrumbJsonLd } from "@/components/json-ld";
@@ -13,7 +12,7 @@ const PAGE_URL = `${siteUrl}/koebsguides`;
 export const metadata: Metadata = {
   title: "Købsguides — skateboard, BMX, løbehjul og beskyttelse",
   description:
-    "Bedste skateboard til børn, BMX cykel, stunt scooter, skateboard-hjul og prisguide — redaktionelle købsguides med affiliate-links.",
+    "Bedste skateboard til børn, BMX cykel, stunt scooter, skateboard-hjul og prisguide — redaktionelle købsguides til skate, BMX og løbehjul.",
   alternates: { canonical: PAGE_URL },
 };
 
@@ -55,7 +54,6 @@ export default function KoebsguidesPage() {
         </Link>
         .
       </p>
-      <AffiliateDisclosure />
       <ProductSearch placement="koebsguides-hub" />
       <div className="mt-16">
         <ContentCardGrid items={guides} />

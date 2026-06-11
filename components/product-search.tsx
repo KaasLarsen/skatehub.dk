@@ -75,9 +75,7 @@ export function ProductSearch({
   return (
     <section className="mt-12 border-2 border-[var(--border-strong)] bg-[var(--bg-elevated)] p-6 shadow-[4px_4px_0_0_var(--pink)]">
       <h2 className="font-display text-2xl uppercase tracking-wide text-[var(--text)] sm:text-3xl">{title}</h2>
-      <p className="mt-2 text-sm text-[var(--text-muted)]">
-        Søg på tværs af affiliate-partnere. Alle links er tracked — du betaler ikke ekstra.
-      </p>
+      <p className="mt-2 text-sm text-[var(--text-muted)]">Søg på tværs af vores shop-partnere.</p>
 
       <form onSubmit={onSubmit} className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-end">
         <label className="flex-1">

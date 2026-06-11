@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AffiliateDisclosure } from "@/components/affiliate-disclosure";
+import { Suspense } from "react";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { SkateparkFinder } from "@/components/skatepark-finder";
 import { BreadcrumbJsonLd } from "@/components/json-ld";
-import { SkateparkMetaBadges } from "@/components/skatepark-meta";
 import {
   SKATEPARK_CITY_HUBS,
   SKATEPARK_REGION_HUBS,
@@ -19,6 +19,15 @@ export const metadata: Metadata = {
     "Find skateparker i hele Danmark: København, Aarhus, Odense, Ishøj, street, bowl og indendørs — adresser, kort og regionale guides.",
   alternates: { canonical: PAGE_URL },
 };
+
+function SkateparkFinderFallback() {
+  return (
+    <section className="mt-12">
+      <div className="h-24 animate-pulse border-2 border-[var(--border)] bg-[var(--bg-card)]" />
+      <div className="mt-6 h-64 animate-pulse border-2 border-[var(--border)] bg-[var(--bg-card)]" />
+    </section>
+  );
+}
 
 export default function SkateparkerIndexPage() {
   const parks = listSkateparks();
@@ -74,36 +83,10 @@ export default function SkateparkerIndexPage() {
         </ul>
       </section>
 
-      <section className="mt-12">
-        <h2 className="section-title">
-          Alle <span className="text-[var(--cyan)]">parker</span>
-        </h2>
-        <ul className="mt-6 space-y-4">
-          {parks.map((park, i) => (
-            <li key={park.slug}>
-              <Link
-                href={`/skateparker/${park.slug}`}
-                className={`sticker-card block ${i % 2 === 1 ? "sticker-card-alt" : ""}`}
-              >
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                  <div>
-                    <h3 className="font-display text-xl uppercase tracking-wide text-[var(--text)]">{park.title}</h3>
-                    <p className="mt-1 text-sm text-[var(--text-dim)]">
-                      {park.address} · {park.city} · {park.region}
-                    </p>
-                    <p className="mt-2 line-clamp-2 text-sm text-[var(--text-muted)]">{park.description}</p>
-                  </div>
-                  <SkateparkMetaBadges features={park.features} difficulty={park.difficulty} />
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <Suspense fallback={<SkateparkFinderFallback />}>
+        <SkateparkFinder parks={parks} />
+      </Suspense>
 
-      <div className="mt-10">
-        <AffiliateDisclosure compact />
-      </div>
       <p className="mt-6 text-sm text-[var(--text-muted)]">
         Mangler du udstyr til parken? Se{" "}
         <Link href="/guides/hvad-koster-det-at-starte-paa-skateboard" className="link-lime">

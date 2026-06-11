@@ -59,7 +59,7 @@ export default function OmOsPage() {
         {siteName} er finansieret via <strong>affiliate-samarbejder</strong> og kan i fremtiden vise{" "}
         <strong>annoncer</strong> (Google AdSense). Når du klikker på shop-links og køber hos vores partnere,
         modtager vi provision — uden merpris for dig. Læs{" "}
-        <LegalLink href="/vilkaar">vilkår og affiliate-oplysning</LegalLink>.
+        <LegalLink href="/vilkaar">vilkår</LegalLink>.
       </p>
       <p>
         Affiliate-indtægter påvirker ikke hvilke produkter vi anbefaler. Vi linker kun til shops vi vurderer

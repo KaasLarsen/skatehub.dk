@@ -52,7 +52,7 @@ export default function VilkaarPage() {
         <li>Vi modtager provision, hvis du køber efter at have klikket på linket.</li>
         <li>Det koster dig ikke ekstra som forbruger.</li>
         <li>Links spores via Partner-Ads (partner-id og uid) og forhandlerens system.</li>
-        <li>Vi viser affiliate-oplysning på sider med shop-links, hvor det er relevant.</li>
+        <li>Fuld oplysning findes i dette afsnit og på <LegalLink href="/om-os">Om os</LegalLink>.</li>
       </ul>
       <p>
         Affiliate-samarbejder påvirker ikke vores redaktionelle vurderinger i væsentlig grad — vi anbefaler udstyr

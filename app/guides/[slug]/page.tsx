@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { AffiliateDisclosure } from "@/components/affiliate-disclosure";
 import { ProductSearch } from "@/components/product-search";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ArticleJsonLd, BreadcrumbJsonLd } from "@/components/json-ld";
@@ -71,10 +70,6 @@ export default async function GuidePage({ params }: Props) {
         <h1 className="page-title mt-3 text-4xl sm:text-5xl">{frontmatter.title}</h1>
         <p className="page-lead">{frontmatter.description}</p>
       </header>
-
-      <div className="mt-6">
-        <AffiliateDisclosure />
-      </div>
 
       <div className="prose-skatehub mt-10">{content}</div>
 
