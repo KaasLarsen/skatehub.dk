@@ -1,5 +1,5 @@
-/** Primær host skal matche Vercel primary domain. */
-export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.skatehub.dk").replace(/\/$/, "");
+/** Primær host skal matche Vercel primary domain og AdSense-registrering (skatehub.dk). */
+export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://skatehub.dk").replace(/\/$/, "");
 export const siteName = "SkateHub";
 export const editorialTeamName = "SkateHub-redaktionen";
 export const editorialTeamDescription =
