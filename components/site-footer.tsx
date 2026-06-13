@@ -25,6 +25,9 @@ export function SiteFooter() {
                 <Link href="/koebsguides" className="transition hover:text-[var(--lime)]">
                   Købsguides
                 </Link>
+                <Link href="/black-friday" className="transition hover:text-[var(--lime)]">
+                  Black Friday
+                </Link>
                 <Link href="/skateparker" className="transition hover:text-[var(--lime)]">
                   Skateparker
                 </Link>

@@ -30,6 +30,7 @@ type Props = {
   /** Hent produkter automatisk ved load (købsguides). */
   autoLoad?: boolean;
   moreHref?: string;
+  chips?: ProductSearchChip[];
 };
 
 export function ProductSearch({
@@ -39,7 +40,9 @@ export function ProductSearch({
   title = "Find gear hos vores partnere",
   autoLoad = false,
   moreHref,
+  chips,
 }: Props) {
+  const quickChips = chips ?? QUICK_CHIPS;
   const { query, setQuery, max, setMax, loading, error, data, lastQuery, search } = useProductSearch(
     defaultQuery,
     defaultMax ?? null,
@@ -112,7 +115,7 @@ export function ProductSearch({
       </form>
 
       <div className="mt-4 flex flex-wrap gap-2">
-        {QUICK_CHIPS.map((chip) => (
+        {quickChips.map((chip) => (
           <button
             key={chip.label}
             type="button"

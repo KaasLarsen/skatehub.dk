@@ -57,7 +57,11 @@ export default function KoebsguidesPage() {
         <Link href="/guides/bedste-skateboard-kuglelejer" className="link-lime">
           kuglelejer
         </Link>
-        .
+        .{" "}
+        <Link href="/black-friday" className="link-lime">
+          Black Friday & julegaver
+        </Link>{" "}
+        — live priser og købsguides samlet.
       </p>
       <Suspense fallback={<ProductSearchFallback />}>
         <KoebsguidesProductSearch />

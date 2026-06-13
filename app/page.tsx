@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ContentCardGrid } from "@/components/content-card-grid";
+import { DealSeasonBanner } from "@/components/deal-season-banner";
 import { OldschoolDeck } from "@/components/graffiti-backdrop";
 import { listBangerGuides } from "@/lib/content/banger-guides";
 import { listSkateparks } from "@/lib/content/skateparks";
@@ -112,6 +113,7 @@ export default function HomePage() {
 
   return (
     <div className="page-wrap">
+      <DealSeasonBanner />
       {/* Marquee strip */}
       <div className="mb-8 overflow-hidden border-y-2 border-[var(--border-strong)] bg-[var(--bg-elevated)] py-2">
         <div className="marquee-track flex w-max gap-8 whitespace-nowrap">
