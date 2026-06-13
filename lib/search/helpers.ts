@@ -194,6 +194,11 @@ export function productThumbUrl(src: string, width = PRODUCT_THUMB_WIDTH): strin
       return u.toString();
     }
 
+    // Justcool (Magento 2): M1-style /cache/WxH/ paths return the same placeholder for every product.
+    if (host.includes("justcool.dk")) {
+      return trimmed;
+    }
+
     if (path.includes("/media/catalog/product/") && !path.includes("/cache/")) {
       const rel = path.split("/media/catalog/product/")[1];
       if (rel) {
