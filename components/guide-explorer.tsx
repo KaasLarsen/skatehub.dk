@@ -24,7 +24,7 @@ type GuideExplorerProps = {
   guides: GuideFrontmatter[];
 };
 
-const SPORTS: (GuideSport | "alle")[] = ["alle", "skateboard", "bmx", "loebehjul", "beskyttelse", "generelt"];
+const SPORTS: (GuideSport | "alle")[] = ["alle", "skateboard", "bmx", "loebehjul", "fingerboard", "beskyttelse", "generelt"];
 const KINDS: (GuideKind | "alle")[] = ["alle", "koeb", "tricks", "vedligeholdelse", "viden"];
 
 function Chip({

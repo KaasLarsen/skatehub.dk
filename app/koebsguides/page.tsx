@@ -12,9 +12,9 @@ import { siteUrl } from "@/lib/site";
 const PAGE_URL = `${siteUrl}/koebsguides`;
 
 export const metadata: Metadata = {
-  title: "Købsguides — skateboard, BMX, løbehjul og beskyttelse",
+  title: "Købsguides — skateboard, BMX, løbehjul, fingerboard og beskyttelse",
   description:
-    "Bedste skateboard til børn, BMX cykel, stunt scooter, skateboard-hjul og prisguide — redaktionelle købsguides til skate, BMX og løbehjul.",
+    "Bedste skateboard til børn, BMX cykel, stunt scooter, fingerboard og prisguide — redaktionelle købsguides til skate, BMX, løbehjul og mini-board.",
   alternates: { canonical: PAGE_URL },
 };
 
@@ -38,7 +38,7 @@ export default function KoebsguidesPage() {
         Købs<span className="text-[var(--lime)]">guides</span>
       </h1>
       <p className="page-lead">
-        Boards, BMX, løbehjul og beskyttelse — vi guider dig til det rigtige gear uden webshop-bullshit. Ny? Start med{" "}
+        Boards, BMX, løbehjul, fingerboard og beskyttelse — vi guider dig til det rigtige gear uden webshop-bullshit. Ny? Start med{" "}
         <Link href="/guides/hvad-koster-det-at-starte-paa-skateboard" className="link-lime">
           hvad det koster at starte
         </Link>

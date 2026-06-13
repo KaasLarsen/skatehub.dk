@@ -60,6 +60,11 @@ const QUERIES: Record<string, GuideProductQuery> = {
     max: 2000,
     title: "Trick-løbehjul",
   },
+  "bedste-fingerboard-til-begyndere": {
+    q: "fingerboard",
+    max: 450,
+    title: "Fingerboards og obstacles",
+  },
   "stunt-scooter-vs-loebehjul": {
     q: "stunt scooter",
     max: 1500,

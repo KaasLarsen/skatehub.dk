@@ -17,6 +17,7 @@ const QUICK_CHIPS: ProductSearchChip[] = [
   { label: "Griptape & deck", q: "skateboard deck griptape" },
   { label: "BMX", q: "bmx cykel" },
   { label: "Trick-løbehjul", q: "stunt scooter trick" },
+  { label: "Fingerboard", q: "fingerboard", max: 450 },
   { label: "Skatehjelm", q: "skate hjelm helmet" },
   { label: "Beskyttelse", q: "knæbeskyttelse skate" },
   { label: "Under 500 kr", q: "skateboard", max: 500 },

@@ -6,7 +6,7 @@ type Props = {
   compact?: boolean;
 };
 
-/** Entry point: vælg skateboard, BMX, løbehjul eller forældre-sti. */
+/** Entry point: vælg skateboard, BMX, løbehjul, fingerboard eller forældre-sti. */
 export function InterestCards({ compact = false }: Props) {
   return (
     <section aria-labelledby="interest-heading">
@@ -22,10 +22,10 @@ export function InterestCards({ compact = false }: Props) {
       </h2>
       {!compact ? (
         <p className="mt-2 max-w-2xl text-sm text-[var(--text-muted)]">
-          SkateHub dækker board, BMX og trick-løbehjul — vælg din sti, så vi viser det mest relevante indhold først.
+          SkateHub dækker board, BMX, trick-løbehjul og fingerboard — vælg din sti, så vi viser det mest relevante indhold først.
         </p>
       ) : null}
-      <ul className={`mt-4 grid gap-3 ${compact ? "sm:grid-cols-2 lg:grid-cols-4" : "sm:grid-cols-2 lg:grid-cols-4"}`}>
+      <ul className={`mt-4 grid gap-3 ${compact ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2 lg:grid-cols-3"}`}>
         {SITE_INTERESTS.map((item, i) => (
           <li key={item.sport}>
             <Link

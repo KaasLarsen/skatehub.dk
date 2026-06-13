@@ -2,7 +2,7 @@ import type { GuideFrontmatter } from "@/lib/content/guide-types";
 
 export type GuideLevel = "ny" | "begynder" | "ovet";
 
-export type GuideSport = "skateboard" | "bmx" | "loebehjul" | "beskyttelse" | "generelt";
+export type GuideSport = "skateboard" | "bmx" | "loebehjul" | "fingerboard" | "beskyttelse" | "generelt";
 
 export type GuideKind = "koeb" | "tricks" | "vedligeholdelse" | "viden";
 
@@ -38,6 +38,7 @@ export const GUIDE_SPORT_LABELS: Record<GuideSport, string> = {
   skateboard: "Skateboard",
   bmx: "BMX",
   loebehjul: "Løbehjul",
+  fingerboard: "Fingerboard",
   beskyttelse: "Beskyttelse",
   generelt: "Generelt",
 };
@@ -73,6 +74,13 @@ export const SITE_INTERESTS = [
     href: "/guides?sport=loebehjul",
   },
   {
+    sport: "fingerboard" as const,
+    label: "Fingerboard",
+    tagline: "Mini-board, tricks og obstacles",
+    emoji: "🤏",
+    href: "/guides?sport=fingerboard",
+  },
+  {
     sport: "foraeldre" as const,
     label: "Forældre",
     tagline: "Skal købe til barnet? Start her",
@@ -94,6 +102,7 @@ export const FEATURED_BY_LEVEL: Record<GuideLevel, string[]> = {
     "skateboard-stoerrelsesguide",
     "complete-vs-custom-skateboard",
     "stunt-scooter-vs-loebehjul",
+    "bedste-fingerboard-til-begyndere",
     "bedste-skatehjelm",
     "bedste-beskyttelsesaet-boern",
     "er-skateboard-farligt-for-boern",
@@ -177,6 +186,12 @@ const CATALOG: Record<string, GuideCatalogMeta> = {
     levels: ["ny", "begynder"],
     sports: ["loebehjul"],
     kinds: ["koeb"],
+  },
+  "bedste-fingerboard-til-begyndere": {
+    levels: ["ny", "begynder"],
+    sports: ["fingerboard"],
+    kinds: ["koeb"],
+    foraeldre: true,
   },
   "bedste-longboard-til-begyndere": {
     levels: ["ny", "begynder"],
@@ -394,6 +409,7 @@ function inferMeta(guide: GuideFrontmatter): GuideCatalogMeta {
   const sports: GuideSport[] = [];
   if (tags.some((t) => t.includes("bmx"))) sports.push("bmx");
   if (tags.some((t) => t.includes("løbehjul") || t.includes("scooter"))) sports.push("loebehjul");
+  if (tags.some((t) => t.includes("fingerboard") || t.includes("finger board"))) sports.push("fingerboard");
   if (tags.some((t) => t.includes("hjelm") || t.includes("beskytt") || t.includes("knæ")))
     sports.push("beskyttelse");
   if (tags.some((t) => t.includes("skateboard") || t.includes("longboard") || t.includes("kickflip") || t.includes("shove") || t.includes("heelflip") || t.includes("manual") || t.includes("ollie") || t.includes("trucks") || t.includes("deck") || t.includes("griptape")))
@@ -490,5 +506,12 @@ export function isGuideLevel(value: string | null): value is GuideLevel {
 }
 
 export function isGuideSport(value: string | null): value is GuideSport {
-  return value === "skateboard" || value === "bmx" || value === "loebehjul" || value === "beskyttelse" || value === "generelt";
+  return (
+    value === "skateboard" ||
+    value === "bmx" ||
+    value === "loebehjul" ||
+    value === "fingerboard" ||
+    value === "beskyttelse" ||
+    value === "generelt"
+  );
 }

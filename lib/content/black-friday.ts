@@ -8,6 +8,7 @@ export const BLACK_FRIDAY_PRODUCT_CHIPS: ProductSearchChip[] = [
   { label: "BMX til børn", q: "bmx børn 20 tommer", max: 2500 },
   { label: "BMX complete", q: "bmx cykel complete", max: 4000 },
   { label: "Trick-løbehjul", q: "stunt scooter trick", max: 2000 },
+  { label: "Fingerboard", q: "fingerboard", max: 450 },
   { label: "Skatehjelm", q: "skate hjelm", max: 600 },
   { label: "Beskyttelsessæt", q: "beskyttelsessæt skate", max: 500 },
   { label: "Skate-sko", q: "vans skate sko", max: 900 },
@@ -27,6 +28,7 @@ export const BLACK_FRIDAY_GUIDE_SLUGS = [
   "bedste-skateboard-til-begyndere",
   "bedste-bmx-cykel",
   "bedste-trick-loebehjul",
+  "bedste-fingerboard-til-begyndere",
   "bedste-skatehjelm",
 ] as const;
 
