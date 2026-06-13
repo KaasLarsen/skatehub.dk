@@ -8,7 +8,7 @@ import { siteUrl } from "@/lib/site";
 
 const PAGE_TITLE = "Guides — find det rigtige indhold";
 const PAGE_DESCRIPTION =
-  "Vælg dit skate-niveau og få anbefalede guides — købsguides, tricks og vedligeholdelse om skate, BMX og løbehjul.";
+  "Vælg din interesse (skateboard, BMX, løbehjul), dit niveau og få anbefalede guides — køb, tricks og vedligeholdelse.";
 const PAGE_URL = `${siteUrl}/guides`;
 
 export const metadata: Metadata = {

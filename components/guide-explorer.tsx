@@ -5,14 +5,16 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { ContentCardGrid } from "@/components/content-card-grid";
 import type { GuideFrontmatter } from "@/lib/content/guide-types";
 import {
-  FEATURED_BY_LEVEL,
   GUIDE_KIND_LABELS,
   GUIDE_LEVEL_LABELS,
   GUIDE_LEVEL_STORAGE_KEY,
   GUIDE_SPORT_LABELS,
+  GUIDE_SPORT_STORAGE_KEY,
+  SITE_INTERESTS,
   filterGuides,
   getFeaturedGuides,
   isGuideLevel,
+  isGuideSport,
   type GuideKind,
   type GuideLevel,
   type GuideSport,
@@ -60,6 +62,8 @@ export function GuideExplorer({ guides }: GuideExplorerProps) {
   const [foraeldreOnly, setForaeldreOnly] = useState(false);
   const [hydrated, setHydrated] = useState(false);
 
+  const activeInterest = foraeldreOnly ? "foraeldre" : sport === "alle" ? null : sport;
+
   const syncUrl = useCallback(
     (next: {
       level: GuideLevel;
@@ -92,12 +96,37 @@ export function GuideExplorer({ guides }: GuideExplorerProps) {
     setLevel(initialLevel);
     setQuery(searchParams.get("q") ?? "");
     const paramSport = searchParams.get("sport");
-    setSport(paramSport && paramSport in GUIDE_SPORT_LABELS ? (paramSport as GuideSport) : "alle");
+    const initialSport =
+      paramSport && isGuideSport(paramSport)
+        ? paramSport
+        : isGuideSport(localStorage.getItem(GUIDE_SPORT_STORAGE_KEY))
+          ? (localStorage.getItem(GUIDE_SPORT_STORAGE_KEY) as GuideSport)
+          : "alle";
+    setSport(initialSport);
+    if (initialSport !== "alle") localStorage.setItem(GUIDE_SPORT_STORAGE_KEY, initialSport);
     const paramKind = searchParams.get("type");
     setKind(paramKind && paramKind in GUIDE_KIND_LABELS ? (paramKind as GuideKind) : "alle");
     setForaeldreOnly(searchParams.get("foraeldre") === "1");
     setHydrated(true);
   }, [searchParams]);
+
+  const pickSport = (next: GuideSport | "alle") => {
+    setSport(next);
+    setForaeldreOnly(false);
+    if (next === "alle") localStorage.removeItem(GUIDE_SPORT_STORAGE_KEY);
+    else localStorage.setItem(GUIDE_SPORT_STORAGE_KEY, next);
+    syncUrl({ level, query, sport: next, kind, foraeldreOnly: false });
+  };
+
+  const pickInterest = (interest: (typeof SITE_INTERESTS)[number]["sport"]) => {
+    if (interest === "foraeldre") {
+      setForaeldreOnly(true);
+      setSport("alle");
+      syncUrl({ level, query, sport: "alle", kind, foraeldreOnly: true });
+      return;
+    }
+    pickSport(interest);
+  };
 
   const pickLevel = (next: GuideLevel) => {
     setLevel(next);
@@ -105,7 +134,10 @@ export function GuideExplorer({ guides }: GuideExplorerProps) {
     syncUrl({ level: next, query, sport, kind, foraeldreOnly });
   };
 
-  const featured = useMemo(() => getFeaturedGuides(guides, level), [guides, level]);
+  const featured = useMemo(
+    () => getFeaturedGuides(guides, level, sport, foraeldreOnly),
+    [guides, level, sport, foraeldreOnly],
+  );
   const featuredSlugs = useMemo(() => new Set(featured.map((g) => g.slug)), [featured]);
 
   const filtered = useMemo(
@@ -129,11 +161,21 @@ export function GuideExplorer({ guides }: GuideExplorerProps) {
       foraeldreOnly: patch.foraeldreOnly ?? foraeldreOnly,
     };
     if (patch.query !== undefined) setQuery(patch.query);
-    if (patch.sport !== undefined) setSport(patch.sport);
+    if (patch.sport !== undefined) {
+      setSport(patch.sport);
+      if (patch.sport === "alle") localStorage.removeItem(GUIDE_SPORT_STORAGE_KEY);
+      else localStorage.setItem(GUIDE_SPORT_STORAGE_KEY, patch.sport);
+    }
     if (patch.kind !== undefined) setKind(patch.kind);
     if (patch.foraeldreOnly !== undefined) setForaeldreOnly(patch.foraeldreOnly);
     syncUrl(next);
   };
+
+  const featuredLabel = foraeldreOnly
+    ? "forældre"
+    : sport !== "alle"
+      ? GUIDE_SPORT_LABELS[sport].toLowerCase()
+      : GUIDE_LEVEL_LABELS[level].label.toLowerCase();
 
   if (!hydrated) {
     return <div className="mt-10 h-48 animate-pulse border-2 border-[var(--border)] bg-[var(--bg-card)]" />;
@@ -141,6 +183,57 @@ export function GuideExplorer({ guides }: GuideExplorerProps) {
 
   return (
     <div className="mt-10 space-y-10">
+      {/* Interesse-vælger */}
+      <section aria-labelledby="guide-interest-heading">
+        <h2 id="guide-interest-heading" className="text-xs font-bold uppercase tracking-widest text-[var(--lime)]">
+          Hvad kører du?
+        </h2>
+        <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {SITE_INTERESTS.map((item) => {
+            const active = activeInterest === item.sport;
+            return (
+              <li key={item.sport}>
+                <button
+                  type="button"
+                  onClick={() => pickInterest(item.sport)}
+                  className={`sticker-card w-full text-left ${active ? "border-[var(--lime)]" : ""}`}
+                  aria-pressed={active}
+                >
+                  <span className="text-2xl" aria-hidden>
+                    {item.emoji}
+                  </span>
+                  <span className="mt-2 block font-display text-lg uppercase tracking-wide text-[var(--text)]">
+                    {item.label}
+                  </span>
+                  <span className="mt-1 block text-sm leading-relaxed text-[var(--text-muted)]">{item.tagline}</span>
+                  {active ? (
+                    <span className="badge-neon mt-3">Dit valg</span>
+                  ) : (
+                    <span className="mt-3 inline-block text-xs uppercase tracking-wider text-[var(--text-dim)]">
+                      Vælg →
+                    </span>
+                  )}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+        {sport !== "alle" || foraeldreOnly ? (
+          <button
+            type="button"
+            onClick={() => {
+              setSport("alle");
+              setForaeldreOnly(false);
+              localStorage.removeItem(GUIDE_SPORT_STORAGE_KEY);
+              syncUrl({ level, query, sport: "alle", kind, foraeldreOnly: false });
+            }}
+            className="mt-3 text-xs font-bold uppercase tracking-wider text-[var(--text-dim)] hover:text-[var(--lime)]"
+          >
+            Vis alle interesser
+          </button>
+        ) : null}
+      </section>
+
       {/* Niveau-vælger */}
       <section aria-labelledby="guide-level-heading">
         <h2 id="guide-level-heading" className="text-xs font-bold uppercase tracking-widest text-[var(--lime)]">
@@ -185,10 +278,10 @@ export function GuideExplorer({ guides }: GuideExplorerProps) {
           <div className="flex items-end justify-between gap-4 border-b-2 border-[var(--border)] pb-4">
             <div>
               <h2 id="featured-guides-heading" className="section-title">
-                Anbefalet til <span className="text-[var(--pink)]">{GUIDE_LEVEL_LABELS[level].label.toLowerCase()}</span>
+                Anbefalet til <span className="text-[var(--pink)]">{featuredLabel}</span>
               </h2>
               <p className="mt-2 text-sm text-[var(--text-muted)]">
-                {FEATURED_BY_LEVEL[level].length} kuraterede guides — skift niveau ovenfor når som helst.
+                {featured.length} kuraterede guides — skift interesse eller niveau når som helst.
               </p>
             </div>
           </div>

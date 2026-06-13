@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ContentCardGrid } from "@/components/content-card-grid";
 import { DealSeasonBanner } from "@/components/deal-season-banner";
+import { InterestCards } from "@/components/interest-cards";
 import { OldschoolDeck } from "@/components/graffiti-backdrop";
 import { listBangerGuides } from "@/lib/content/banger-guides";
 import { listSkateparks } from "@/lib/content/skateparks";
@@ -176,6 +177,10 @@ export default function HomePage() {
             <OldschoolDeck className="h-[420px] w-auto drop-shadow-[8px_8px_0_rgba(200,245,66,0.3)]" />
           </div>
         </div>
+      </section>
+
+      <section className="mt-16">
+        <InterestCards />
       </section>
 
       {/* Culture cards */}

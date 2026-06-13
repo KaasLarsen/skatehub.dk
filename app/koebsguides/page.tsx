@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 import { ContentCardGrid } from "@/components/content-card-grid";
+import { InterestCards } from "@/components/interest-cards";
 import { KoebsguidesProductSearch } from "@/components/koebsguides-product-search";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { BreadcrumbJsonLd } from "@/components/json-ld";
@@ -63,6 +64,9 @@ export default function KoebsguidesPage() {
         </Link>{" "}
         — live priser og købsguides samlet.
       </p>
+      <div className="mt-10">
+        <InterestCards compact />
+      </div>
       <Suspense fallback={<ProductSearchFallback />}>
         <KoebsguidesProductSearch />
       </Suspense>

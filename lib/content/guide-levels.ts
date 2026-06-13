@@ -49,6 +49,40 @@ export const GUIDE_KIND_LABELS: Record<GuideKind, string> = {
   viden: "Viden",
 };
 
+/** Primære interesser — vælges på forsiden og /guides. */
+export const SITE_INTERESTS = [
+  {
+    sport: "skateboard" as const,
+    label: "Skateboard",
+    tagline: "Board, tricks, park og reservedele",
+    emoji: "🛹",
+    href: "/guides?sport=skateboard",
+  },
+  {
+    sport: "bmx" as const,
+    label: "BMX",
+    tagline: "Cykel, bunny hop og skateparker",
+    emoji: "🚲",
+    href: "/guides?sport=bmx",
+  },
+  {
+    sport: "loebehjul" as const,
+    label: "Løbehjul",
+    tagline: "Trick-scooter og stunt",
+    emoji: "🛴",
+    href: "/guides?sport=loebehjul",
+  },
+  {
+    sport: "foraeldre" as const,
+    label: "Forældre",
+    tagline: "Skal købe til barnet? Start her",
+    emoji: "👪",
+    href: "/guides?foraeldre=1",
+  },
+] as const;
+
+export type SiteInterest = (typeof SITE_INTERESTS)[number]["sport"];
+
 /** Kuraterede top-forslag pr. niveau (rækkefølge = prioritet). */
 export const FEATURED_BY_LEVEL: Record<GuideLevel, string[]> = {
   ny: [
@@ -391,16 +425,34 @@ export function guideMatchesLevel(guide: GuideFrontmatter, level: GuideLevel): b
   return getGuideCatalogMeta(guide).levels.includes(level);
 }
 
-export function getFeaturedGuides(guides: GuideFrontmatter[], level: GuideLevel): GuideFrontmatter[] {
+export function getFeaturedGuides(
+  guides: GuideFrontmatter[],
+  level: GuideLevel,
+  sport: GuideSport | "alle" = "alle",
+  foraeldreOnly = false,
+): GuideFrontmatter[] {
   const bySlug = new Map(guides.map((g) => [g.slug, g]));
-  const featured = FEATURED_BY_LEVEL[level]
+  let featured = FEATURED_BY_LEVEL[level]
     .map((slug) => bySlug.get(slug))
     .filter((g): g is GuideFrontmatter => g != null);
+
+  if (sport !== "alle") {
+    featured = featured.filter((g) => getGuideCatalogMeta(g).sports.includes(sport));
+  }
+  if (foraeldreOnly) {
+    featured = featured.filter((g) => getGuideCatalogMeta(g).foraeldre);
+  }
 
   if (featured.length >= 4) return featured.slice(0, 6);
 
   const featuredSlugs = new Set(featured.map((g) => g.slug));
-  const rest = guides.filter((g) => guideMatchesLevel(g, level) && !featuredSlugs.has(g.slug));
+  let rest = guides.filter((g) => guideMatchesLevel(g, level) && !featuredSlugs.has(g.slug));
+  if (sport !== "alle") {
+    rest = rest.filter((g) => getGuideCatalogMeta(g).sports.includes(sport));
+  }
+  if (foraeldreOnly) {
+    rest = rest.filter((g) => getGuideCatalogMeta(g).foraeldre);
+  }
   return [...featured, ...rest].slice(0, 6);
 }
 
@@ -431,7 +483,12 @@ export function filterGuides(guides: GuideFrontmatter[], filters: GuideFilters):
 }
 
 export const GUIDE_LEVEL_STORAGE_KEY = "skatehub-guide-level";
+export const GUIDE_SPORT_STORAGE_KEY = "skatehub-guide-sport";
 
 export function isGuideLevel(value: string | null): value is GuideLevel {
   return value === "ny" || value === "begynder" || value === "ovet";
+}
+
+export function isGuideSport(value: string | null): value is GuideSport {
+  return value === "skateboard" || value === "bmx" || value === "loebehjul" || value === "beskyttelse" || value === "generelt";
 }
